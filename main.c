@@ -44,7 +44,7 @@ int main()
 						ch = fgetc(stdin);
 						if (ch == 'q')
 							break;
-						print_tcp_packet_cmd(buffer,data_size);
+						PrintTcpPacketCmd(buffer,data_size);
 					}
 				}
 				break;
@@ -82,4 +82,3 @@ int main()
 	system("clear");//화면 지움
     return 0;
 }
-

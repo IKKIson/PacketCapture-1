@@ -21,14 +21,14 @@
 
 //함수
 void ProcessPacket(unsigned char* , int);
-void print_ip_header(unsigned char* , int);//log.txt파일로 출력함. 
-void print_tcp_packet(unsigned char* , int);//log.txt파일로 출력함
-void print_tcp_packet_cmd(unsigned char*, int);//cmd창에 출력
-void print_udp_packet(unsigned char * , int);//log.txt파일로 출력함
-void print_icmp_packet(unsigned char* , int);//log.txt파일로 출력함
+void PrintIpHeader(unsigned char* , int);//log.txt파일로 출력함. 
+void PrintTcpPacket(unsigned char* , int);//log.txt파일로 출력함
+void PrintTcpPacketCmd(unsigned char*, int);//cmd창에 출력
+void PrintUdpPacket(unsigned char * , int);//log.txt파일로 출력함
+void PrintIcmpPacket(unsigned char* , int);//log.txt파일로 출력함
 void PrintData (unsigned char* , int);//log.txt파일로 출
 void PrintDataCmd (unsigned char* , int);//cmd창에 출력
-void print_icmp_packet_cmd(unsigned char *Buffer, int Size);
+void PrintIcmpPacketCmd(unsigned char *buffer, int Size);
 void PrintHelp();
 void PrintMain();
 //void ClearReadBuffer();//버퍼 없애기.
