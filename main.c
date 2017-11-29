@@ -23,10 +23,10 @@ int main()
         return 1;
     }
 
+	system("clear");
+	PrintMain(); //화면표시 틀 출력
     while(1)
     {
-		system("clear");
-		PrintMain(); //화면표시 틀 출력
 		
 		optionChoice = fgetc(stdin); //선택 옵션을 키보드로 받아옴
 		//ClearReadBuffer(); //버퍼 비움
@@ -37,45 +37,52 @@ int main()
 				exit(1);
 				break;
 			case 't': //tcp 조회
-				{
-					char ch; //자식 프로세스로 따로따로 출력할지 고려해봐야 됨. 실시간 출력하면서 커맨드 입력가능하게 만들어야 됨.
-					while(1){
-						sleep(1);
-						ch = fgetc(stdin);
-						if (ch == 'q')
-							break;
-						PrintTcpPacketCmd(buffer,data_size);
-					}
+				if(PrintCaptureForm(buffer, data_size, FORM_TCP) == FORM_ERROR){
+					printf("PrintCaptureFrom() form flag error\n");
 				}
 				break;
 			case 'u': //udp 조회
-
+				if(PrintCaptureForm(buffer, data_size, FORM_UDP) == FORM_ERROR){
+					printf("PrintCaptureFrom() form flag error\n");
+				}
 				break;
 			case 'f': //ftp 조회
-
+				if(PrintCaptureForm(buffer, data_size, FORM_FTP) == FORM_ERROR){
+					printf("PrintCaptureFrom() form flag error\n");
+				} 
 				break;
 			case 'h': //http 조회
-
+				if(PrintCaptureForm(buffer, data_size, FORM_HTTP) == FORM_ERROR){
+					printf("PrintCaptureFrom() form flag error\n");
+				} 
 				break;
 			case '?': //도움말
 				PrintHelp();
+				sleep(4);
+				break;
+			case 'm': //TODO : 코드의미 정확히 판단 후 지우던가 해야할듯.
+				//TODO : 지워야할지 고려<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		        saddr_size = sizeof(saddr);
+				printf("saddr_size : %d",saddr_size);
+		        //Receive a packet
+		        data_size = recvfrom(sock_raw , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+		
+		        if(data_size <0 )
+		        {
+		            printf("Recvfrom error , failed to get packets\n");
+		            break;
+		        }
+		        //Now process the packet
+		        ProcessPacket(buffer , data_size);
+				//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+				sleep(1);
 				break;
 			default : //다른 키 눌렀을 시
 				break;
-		}
+		}		
+		system("clear");
+		PrintMain(); //화면표시 틀 출력
 
-        saddr_size = sizeof(saddr);
-		printf("saddr_size : %d",saddr_size);
-        //Receive a packet
-        data_size = recvfrom(sock_raw , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
-
-        if(data_size <0 )
-        {
-            printf("Recvfrom error , failed to get packets\n");
-            break;
-        }
-       //Now process the packet
-        ProcessPacket(buffer , data_size);
     }
 
     close(sock_raw); //sock_raw file discriptor를 닫는다.
