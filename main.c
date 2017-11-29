@@ -38,25 +38,36 @@ int main()
 				break;
 			case 't': //tcp 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_TCP) == FORM_ERROR){
-					printf("PrintCaptureFrom() form flag error\n");
+					printf("PrintCaptureFrom() tcp form flag error\n");
 				}
 				break;
 			case 'u': //udp 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_UDP) == FORM_ERROR){
-					printf("PrintCaptureFrom() form flag error\n");
+					printf("PrintCaptureFrom() udp form flag error\n");
 				}
 				break;
 			case 'f': //ftp 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_FTP) == FORM_ERROR){
-					printf("PrintCaptureFrom() form flag error\n");
+					printf("PrintCaptureFrom() ftp form flag error\n");
 				} 
 				break;
 			case 'h': //http 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_HTTP) == FORM_ERROR){
-					printf("PrintCaptureFrom() form flag error\n");
+					printf("PrintCaptureFrom() http form flag error\n");
 				} 
 				break;
+			case 'i':
+				if(PrintCaptureForm(buffer, data_size, FORM_IP) == FORM_ERROR){
+					printf("PrintCaptureForm() ip form flag error\n");
+				}
+				break;
+			case 'd':
+				if(PrintCaptureForm(buffer, data_size, FORM_DATA) == FORM_ERROR){
+					printf("PrintCaputreForm() data form flag error\n");
+				}
+				break;
 			case '?': //도움말
+
 				PrintHelp();
 				sleep(4);
 				break;

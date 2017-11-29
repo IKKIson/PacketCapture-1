@@ -25,6 +25,8 @@
 #define FORM_HTTP 4
 #define FORM_IGMP 5  //todo: 지우는거 결정
 #define FORM_ICMP 6 //todo: 지우는거 결정
+#define FORM_IP 7
+#define FORM_DATA 8
 #define FORM_ERROR -1
 
 //함수

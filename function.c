@@ -47,6 +47,8 @@ void PrintMain(){
 	printf("u : udp capture\n");
 	printf("f : ftp capture\n");
 	printf("h : http capture\n");
+	printf("i : ip capture\n");
+	printf("d : data capture\n");
 	printf("m : trans tcp packet Test\n");
 	printf("? : help\n");
 	printf("------------------------\n");
@@ -96,6 +98,13 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 			case FORM_HTTP:
 				PrintHttpPacketCmd(buffer,data_size);
 				break;
+			case FORM_IP:
+				PrintIpHeaderCmd(buffer,data_size);
+				break;
+			case FORM_DATA:
+				PrintDataCmd(buffer,data_size);
+				break;
+
 		default:
 				return FORM_ERROR;
 			break;
