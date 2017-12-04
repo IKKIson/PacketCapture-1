@@ -27,7 +27,11 @@
 #define FORM_ICMP 6 //todo: 지우는거 결정
 #define FORM_IP 7
 #define FORM_DATA 8
+#define FORM_TELNET 9
+#define FORM_DNS 10
 #define FORM_ERROR -1
+
+
 
 //함수
 

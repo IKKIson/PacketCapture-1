@@ -73,6 +73,37 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 	//TODO: 자식 프로세스로 따로 출력할지 고려해봐야 함. 실시간으로 출력하면서 케맨드 입력이 가능하게 만들어야 함.
 	char choice;
 	int updateCount=0;
+	int logFtp;
+	int logHttp;
+	int logDns;
+	int logTelnet;
+
+	//file open
+	if(flag == FORM_FTP){ // FTP FILE OPEN
+		logFtp = fopen("logFtp.txt","w");
+		if(logFtp == -1){
+			printf("FTP file open error\n");
+			return FORM_ERROR;
+		}
+	} else if(flag == FORM_HTTP){// HTTP FILE OPEN
+		logHttp = fopen("logHttp.txt","w");
+		if(logHttp == -1){
+			printf("HTTP file open error\n");
+			return FORM_ERROR;
+		}
+	} else if(flag == FORM_DNS){ // DNS FILE OPEN
+		logDns = fopen("logDns.txt","w");
+		if(logDns == -1){
+			printf("DNS file open error\n");
+			return FORM_ERROR;
+		}
+	} else if(flag == FORM_TELNET){ // TELNET FILE OPEN
+		logTelnet = fopen("logTelnet.txt","w");
+		if(logTelnet == -1){
+			printf("TELENT file open error\n");
+			return FORM_ERROR;
+		}
+	}
 
 	choice = fgetc(stdin);
 	//ClearReadBuffer();
@@ -94,6 +125,7 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 				break;
 			case FORM_FTP:
 				PrintFtpPacketCmd(buffer,data_size);
+				PrintFtpPacket(buffer,data_size);
 				break;
 			case FORM_HTTP:
 				PrintHttpPacketCmd(buffer,data_size);
@@ -113,6 +145,22 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 		updateCount++;
 		choice = fgetc(stdin);
 	}
+
+	
+	//file close
+	if(flag == FORM_FTP){ //FTP close file
+		close(logFtp);
+	} else if (flag == FORM_HTTP){ //HTTP close file
+		close(logHttp);
+	} else if (flag == FORM_DNS){ //DNS close file
+		close(logDns);
+	} else if (flag == FORM_TELNET){ //TELNET close file
+		close(logTelnet);
+	}
+
+
+
+
 	return 0;
 }
 
@@ -378,12 +426,28 @@ void WriteIcmpPacketFile(unsigned char *buffer, int size){
 //TODO : 구현해야 함.
 //Ftp function
 void PrintFtpPacketCmd(unsigned char*buffer, int size){
+	char choice;
+	while(1){
+		system("clear");
+		printf("q : quit\n");
+		PrintTcpPacket(buffer,size);
+		PrintTcpPacketCmd(buffer,size);
+		PrintData(buffer, size);
+		PrintDataCmd(buffer,size);
+		scanf("%c",&choice);
+		if(choice == 'q');
+				break;
+
+	}
 }
+
 void PrintFtpPacket(unsigned char* buffer, int size){
+
 }
 
 //Http function
 void PrintHttpPacketCmd(unsigned char* buffer, int size){
+	
 }
 void PrintHttpPacket(unsigned char* buffer, int size){
 }

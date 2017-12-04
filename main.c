@@ -40,6 +40,7 @@ int main()
 				if(PrintCaptureForm(buffer, data_size, FORM_TCP) == FORM_ERROR){
 					printf("PrintCaptureFrom() tcp form flag error\n");
 				}
+				
 				break;
 			case 'u': //udp 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_UDP) == FORM_ERROR){
@@ -47,9 +48,12 @@ int main()
 				}
 				break;
 			case 'f': //ftp 조회
+				
 				if(PrintCaptureForm(buffer, data_size, FORM_FTP) == FORM_ERROR){
 					printf("PrintCaptureFrom() ftp form flag error\n");
 				} 
+				ProcessPacket(buffer, data_size);
+				
 				break;
 			case 'h': //http 조회
 				if(PrintCaptureForm(buffer, data_size, FORM_HTTP) == FORM_ERROR){
