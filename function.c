@@ -412,24 +412,24 @@ void PrintFtpData(unsigned char* data, int size){
 				if(data[j]>=32 && data[j]<=128)
 					fprintf(logFtp,"%c",(unsigned char)data[j]); //if its a number or alphabet
 				 
-				else fprintf(logFtp,""); //otherwise print a dot
+				else fprintf(logFtp," "); //otherwise print a dot
 			}
 			//fprintf(logFtp,"\n");
 		} 
 		 
-		if(i%16==0) fprintf(logFtp,"");
+		if(i%16==0) fprintf(logFtp," ");
 			//fprintf(logFtp," %02X",(unsigned int)data[i]);
 				 
 		if( i==size-1)  //print the last spaces
 		{
-			for(j=0;j<15-i%16;j++) fprintf(logFtp,""); //extra spaces
+			for(j=0;j<15-i%16;j++) fprintf(logFtp," "); //extra spaces
 			 
 			fprintf(logFtp,"+++++++++");
 			 
 			for (j=i-i%16 ; j<=i ; j++)
 			{
 				if(data[j]>=32 && data[j]<=128) fprintf(logFtp,"%c",(unsigned char)data[j]);
-				else fprintf(logFtp,"");
+				else fprintf(logFtp," ");
 			}
 			fprintf(logFtp,"\n");
 		}
