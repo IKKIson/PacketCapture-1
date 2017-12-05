@@ -1,163 +1,255 @@
-
-
-***********************TCP Packet*************************
-
-IP Header
-   |-IP Version        : 0
-   |-IP Header Length  : 0 DWORDS or 0 Bytes
-   |-Type Of Service   : 0
-   |-IP Total Length   : 0  Bytes(size of Packet)
-   |-Identification    : 0
-   |-TTL      : 0
-   |-Protocol : 0
-   |-Checksum : 0
-   |-Source IP        : 0.0.0.0
-   |-Destination IP   : 0.0.0.0
-
-TCP Header
-   |-Source Port      : 0
-   |-Destination Port : 0
-   |-Sequence Number    : 0
-   |-Acknowledge Number : 0
-   |-Header Length      : 0 DWORDS or 0 BYTES
-   |-Urgent Flag          : 0
-   |-Acknowledgement Flag : 0
-   |-Push Flag            : 0
-   |-Reset Flag           : 0
-   |-Synchronise Flag     : 0
-   |-Finish Flag          : 0
-   |-Window         : 0
-   |-Checksum       : 0
-   |-Urgent Pointer : 0
-
-                        DATA Dump                         
-IP Header
-TCP Header
-Data Payload
-
-###########################################################
-
-***********************TCP Packet*************************
-
-IP Header
-   |-IP Version        : 0
-   |-IP Header Length  : 0 DWORDS or 0 Bytes
-   |-Type Of Service   : 0
-   |-IP Total Length   : 0  Bytes(size of Packet)
-   |-Identification    : 0
-   |-TTL      : 0
-   |-Protocol : 0
-   |-Checksum : 0
-   |-Source IP        : 0.0.0.0
-   |-Destination IP   : 0.0.0.0
-
-TCP Header
-   |-Source Port      : 0
-   |-Destination Port : 0
-   |-Sequence Number    : 0
-   |-Acknowledge Number : 0
-   |-Header Length      : 0 DWORDS or 0 BYTES
-   |-Urgent Flag          : 0
-   |-Acknowledgement Flag : 0
-   |-Push Flag            : 0
-   |-Reset Flag           : 0
-   |-Synchronise Flag     : 0
-   |-Finish Flag          : 0
-   |-Window         : 0
-   |-Checksum       : 0
-   |-Urgent Pointer : 0
-
-                        DATA Dump                         
-IP Header
-TCP Header
-Data Payload
-
-###########################################################
-
-***********************TCP Packet*************************
-
-IP Header
-   |-IP Version        : 0
-   |-IP Header Length  : 0 DWORDS or 0 Bytes
-   |-Type Of Service   : 0
-   |-IP Total Length   : 0  Bytes(size of Packet)
-   |-Identification    : 0
-   |-TTL      : 0
-   |-Protocol : 0
-   |-Checksum : 0
-   |-Source IP        : 0.0.0.0
-   |-Destination IP   : 0.0.0.0
-
-TCP Header
-   |-Source Port      : 0
-   |-Destination Port : 0
-   |-Sequence Number    : 0
-   |-Acknowledge Number : 0
-   |-Header Length      : 0 DWORDS or 0 BYTES
-   |-Urgent Flag          : 0
-   |-Acknowledgement Flag : 0
-   |-Push Flag            : 0
-   |-Reset Flag           : 0
-   |-Synchronise Flag     : 0
-   |-Finish Flag          : 0
-   |-Window         : 0
-   |-Checksum       : 0
-   |-Urgent Pointer : 0
-
-                        DATA Dump                         
-IP Header
-TCP Header
-Data Payload
-
-###########################################################
-
-***********************TCP Packet*************************
-
-IP Header
-   |-IP Version        : 0
-   |-IP Header Length  : 0 DWORDS or 0 Bytes
-   |-Type Of Service   : 0
-   |-IP Total Length   : 0  Bytes(size of Packet)
-   |-Identification    : 0
-   |-TTL      : 0
-   |-Protocol : 0
-   |-Checksum : 0
-   |-Source IP        : 0.0.0.0
-   |-Destination IP   : 0.0.0.0
-
-TCP Header
-   |-Source Port      : 0
-   |-Destination Port : 0
-   |-Sequence Number    : 0
-   |-Acknowledge Number : 0
-   |-Header Length      : 0 DWORDS or 0 BYTES
-   |-Urgent Flag          : 0
-   |-Acknowledgement Flag : 0
-   |-Push Flag            : 0
-   |-Reset Flag           : 0
-   |-Synchronise Flag     : 0
-   |-Finish Flag          : 0
-   |-Window         : 0
-   |-Checksum       : 0
-   |-Urgent Pointer : 0
-
-                        DATA Dump                         
-IP Header
-TCP Header
-Data Payload
-
-###########################################################
-
-***********************TCP Packet*************************
-
-IP Header
-   |-IP Version        : 0
-   |-IP Header Length  : 0 DWORDS or 0 Bytes
-   |-Type Of Service   : 0
-   |-IP Total Length   : 0  Bytes(size of Packet)
-   |-Identification    : 0
-   |-TTL      : 0
-   |-Protocol : 0
-   |-Checksum : 0
-   |-Source IP        : 0.0.0.0
-   |-Desti
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMNDls+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMSTtrue+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 3124
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+DSTH25DSTPtestfileserverfile...DSTT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMNDget testfile+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMSTtrue+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 3124
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+DSTH21DSTPthis is a test file DSTT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMNDput testfile+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMSTtrue+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+DSTH21+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 2100
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+DSTPthis is a test file DSTT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+CMSTtrue+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 60
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 60
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+HELO+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+IDNT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+USER+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+ACPT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+PASSce150+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 1076
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+ACPT+++++++++
+=============================end============
+start ProcessPacket()PrintCaptureForm
+PrintFtpPacket() function start 
+buffer : E , size : 52
+FTP Data Payload
+==================start=================
+PrintFtpDataCmd() function start
+===========

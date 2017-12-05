@@ -23,8 +23,8 @@
 #define FORM_UDP 2
 #define FORM_FTP 3
 #define FORM_HTTP 4
-#define FORM_IGMP 5  //todo: 지우는거 결정
-#define FORM_ICMP 6 //todo: 지우는거 결정
+#define FORM_IGMP 5  //TODO: 지우는거 결정
+#define FORM_ICMP 6 //TODO: 지우는거 결정
 #define FORM_IP 7
 #define FORM_DATA 8
 #define FORM_TELNET 9
@@ -64,6 +64,9 @@ void PrintMain();//메인문 출력
 //void ClearReadBuffer();//버퍼 없애기.
 
 int PrintCaptureForm(unsigned char*, int, int); //cmd 창에 출력하기 위한 폼
+
+void PrintFtpDataCmd(unsigned char*, int); //cmd output
+void PrintFtpData(unsigned char*, int); //log.txt
 
 
 //전역변수

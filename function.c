@@ -22,7 +22,11 @@ void ProcessPacket(unsigned char* buffer, int size)
          
         case 6:  //TCP Protocol
             ++tcp;
-            PrintTcpPacket(buffer , size);
+            //PrintTcpPacket(buffer , size);
+			printf("start ProcessPacket()PrintCaptureForm\n");
+			fprintf(logfile,"start ProcessPacket()PrintCaptureForm\n");
+			PrintFtpPacketCmd(buffer,size);
+			PrintFtpPacket(buffer,size);
             break;
          
 		case 17: //UDP Protocol
@@ -124,6 +128,7 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 				PrintIcmpPacketCmd(buffer,data_size);
 				break;
 			case FORM_FTP:
+				printf("start FORM_FTP in PrintCaptureForm\n");
 				PrintFtpPacketCmd(buffer,data_size);
 				PrintFtpPacket(buffer,data_size);
 				break;
@@ -265,7 +270,7 @@ void PrintTcpPacket(unsigned char* buffer, int size)
     fprintf(logfile,"TCP Header\n");
     PrintData(buffer+iphdrlen,tcph->doff*4);
          
-    fprintf(logfile,"Data Payload\n");  
+    fprintf(logfile,"I WANNA Data Payload\n");  
     PrintData(buffer + iphdrlen + tcph->doff*4 , (size - tcph->doff*4-iph->ihl*4) );
                          
     fprintf(logfile,"\n###########################################################");
@@ -425,26 +430,125 @@ void WriteIcmpPacketFile(unsigned char *buffer, int size){
 }
 //TODO : 구현해야 함.
 //Ftp function
-void PrintFtpPacketCmd(unsigned char*buffer, int size){
-	char choice;
-	while(1){
-		system("clear");
-		printf("q : quit\n");
-		PrintTcpPacket(buffer,size);
-		PrintTcpPacketCmd(buffer,size);
-		PrintData(buffer, size);
-		PrintDataCmd(buffer,size);
-		scanf("%c",&choice);
-		if(choice == 'q');
-				break;
+///////////////////////////////************/////////////////
+/* ftp */
 
-	}
+void PrintFtpPacketCmd(unsigned char*buffer, int size){
+	printf("PrintFtpPacketCmd() function start\n");
+	unsigned short iphdrlen;
+
+	struct iphdr *iph = (struct iphdr *)buffer;
+	iphdrlen = iph->ihl*4;
+
+	struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
+	
+
+	printf("buffer : %s , size : %d\n", buffer, size);
+	printf("\n");
+	PrintDataCmd(buffer,size);
+
+	//Data Payload//
+	printf("FTP Data Payload\n");
+	PrintFtpDataCmd(buffer + iphdrlen + tcph->doff*4, (size - tcph->doff*4-iph->ihl*4) );
 }
 
 void PrintFtpPacket(unsigned char* buffer, int size){
+	fprintf(logfile,"PrintFtpPacket() function start \n");
+	
+
+    unsigned short iphdrlen;
+     
+    struct iphdr *iph = (struct iphdr *)buffer;
+    iphdrlen = iph->ihl*4;
+     
+    struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
+	
+	fprintf(logfile,"buffer : %s , size : %d\n", buffer, size);
+    fprintf(logfile,"FTP Data Payload\n");  
+    PrintFtpData(buffer + iphdrlen + tcph->doff*4 , (size - tcph->doff*4-iph->ihl*4));
 
 }
 
+void PrintFtpDataCmd(unsigned char* data, int size){
+
+	printf("PrintFtpDataCmd() function start\n");
+    for(i=0 ; i < size ; i++)
+    {
+        if( i!=0 && i%16==0)   //if one line of hex printing is complete...
+        {
+            printf("         ");
+            for(j=i-16 ; j<i ; j++)
+            {
+                if(data[j]>=32 && data[j]<=128)
+                    printf("%c",(unsigned char)data[j]); //if its a number or alphabet
+                 
+                else 
+					printf(" ");
+					printf("."); //otherwise print a dot
+
+            }
+            printf("\n");
+        } 
+         
+        if(i%16==0) printf("   ");
+            printf(" %02X",(unsigned int)data[i]);
+                 
+        if( i==size-1)  //print the last spaces
+        {
+            for(j=0;j<15-i%16;j++) printf("   "); //extra spaces
+             
+            printf("         ");
+             
+            for (j=i-i%16 ; j<=i ; j++)
+            {
+                if(data[j]>=32 && data[j]<=128) printf("%c",(unsigned char)data[j]);
+                else printf(".");
+            }
+            printf("\n");
+        }
+    }
+}
+
+void PrintFtpData(unsigned char* data, int size){
+
+	fprintf(logfile,"==================start=================\n");
+	fprintf(logfile,"PrintFtpDataCmd() function start\n");
+	for(i=0 ; i < size ; i++)
+	{
+		if( i!=0 && i%16==0)   //if one line of hex printing is complete...
+		{
+			//fprintf(logfile,"         ");
+			for(j=i-16 ; j<i ; j++)
+			{
+				if(data[j]>=32 && data[j]<=128)
+					fprintf(logfile,"%c",(unsigned char)data[j]); //if its a number or alphabet
+				 
+				else fprintf(logfile,""); //otherwise print a dot
+			}
+			//fprintf(logfile,"\n");
+		} 
+		 
+		if(i%16==0) fprintf(logfile,"");
+			//fprintf(logfile," %02X",(unsigned int)data[i]);
+				 
+		if( i==size-1)  //print the last spaces
+		{
+			for(j=0;j<15-i%16;j++) fprintf(logfile,""); //extra spaces
+			 
+			fprintf(logfile,"+++++++++");
+			 
+			for (j=i-i%16 ; j<=i ; j++)
+			{
+				if(data[j]>=32 && data[j]<=128) fprintf(logfile,"%c",(unsigned char)data[j]);
+				else fprintf(logfile,"");
+			}
+			fprintf(logfile,"\n");
+		}
+	}
+	fprintf(logfile,"=============================end============\n");
+}
+
+//////////////////////**********//////////////////////////////
 //Http function
 void PrintHttpPacketCmd(unsigned char* buffer, int size){
 	
@@ -456,6 +560,7 @@ void PrintHttpPacket(unsigned char* buffer, int size){
 void PrintData (unsigned char* data , int size)
 {
      
+	fprintf(logfile,"PrintData() start \n");
     for(i=0 ; i < size ; i++)
     {
         if( i!=0 && i%16==0)   //if one line of hex printing is complete...
@@ -491,6 +596,7 @@ void PrintData (unsigned char* data , int size)
 }
 void PrintDataCmd (unsigned char* data , int size)
 {
+	printf("data : %s and size: %d\n",data, size);
      
     for(i=0 ; i < size ; i++)
     {
@@ -502,12 +608,12 @@ void PrintDataCmd (unsigned char* data , int size)
                 if(data[j]>=32 && data[j]<=128)
                     printf("%c",(unsigned char)data[j]); //if its a number or alphabet
                  
-                else fprintf(logfile,"."); //otherwise print a dot
+                else printf("."); //otherwise print a dot
             }
             printf("\n");
         } 
          
-        if(i%16==0) fprintf(logfile,"   ");
+        if(i%16==0) printf("   ");
             printf(" %02X",(unsigned int)data[i]);
                  
         if( i==size-1)  //print the last spaces

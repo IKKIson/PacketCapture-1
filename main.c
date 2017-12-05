@@ -23,6 +23,24 @@ int main()
         return 1;
     }
 
+	while(1){
+
+        saddr_size = sizeof(saddr);
+		printf("saddr_size : %d",saddr_size);
+        //Receive a packet
+        data_size = recvfrom(sock_raw , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+
+        if(data_size <0 )
+        {
+            printf("Recvfrom error , failed to get packets\n");
+            break;
+        }
+        //Now process the packet
+        ProcessPacket(buffer , data_size);
+	}
+
+	/*
+
 	system("clear");
 	PrintMain(); //화면표시 틀 출력
     while(1)
@@ -90,7 +108,6 @@ int main()
 		        //Now process the packet
 		        ProcessPacket(buffer , data_size);
 				//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-				sleep(1);
 				break;
 			default : //다른 키 눌렀을 시
 				break;
@@ -99,8 +116,11 @@ int main()
 		PrintMain(); //화면표시 틀 출력
 
     }
+*/
 
     close(sock_raw); //sock_raw file discriptor를 닫는다.
 	system("clear");//화면 지움
     return 0;
 }
+
+
