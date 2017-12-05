@@ -3,44 +3,6 @@
 static int tcp=0,udp=0,icmp=0,others=0,igmp=0,total=0,i,j;
 struct sockaddr_in source,dest;
 
-//TODO: 삭제할지 고려.
-void ProcessPacket(unsigned char* buffer, int size)
-{
-    //Get the IP Header part of this packet
-    struct iphdr *iph = (struct iphdr*)buffer;
-    ++total;
-    switch (iph->protocol) //Check the Protocol and do accordingly...
-    {
-        case 1:  //ICMP Protocol
-            ++icmp;
-            //PrintIcmpPacket(buffer,size);
-            break;
-         
-        case 2:  //IGMP Protocol
-            ++igmp;
-            break;
-         
-        case 6:  //TCP Protocol
-            ++tcp;
-            //PrintTcpPacket(buffer , size);
-			printf("start ProcessPacket()PrintCaptureForm\n");
-			fprintf(logfile,"start ProcessPacket()PrintCaptureForm\n");
-			PrintFtpPacketCmd(buffer,size);
-			PrintFtpPacket(buffer,size);
-            break;
-         
-		case 17: //UDP Protocol
-            ++udp;
-            PrintUdpPacket(buffer , size);
-            break;
-         
-        default: //Some Other Protocol like ARP etc.
-            ++others;
-            break;
-    }
-    printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d\r",tcp,udp,icmp,igmp,others,total);
-}
-
 // ETC function
 void PrintMain(){
 	printf("------------------------\n");
@@ -72,41 +34,44 @@ void PrintHelp(){
 }
 
 
-int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
+int PrintCaptureForm(unsigned char *buffer, int size, int flag){
+
+    //Get the IP Header part of this packet
+    struct iphdr *iph = (struct iphdr*)buffer;
+    ++total;
 
 	//TODO: 자식 프로세스로 따로 출력할지 고려해봐야 함. 실시간으로 출력하면서 케맨드 입력이 가능하게 만들어야 함.
 	char choice;
 	int updateCount=0;
-	int logFtp;
-	int logHttp;
-	int logDns;
-	int logTelnet;
 
 	//file open
-	if(flag == FORM_FTP){ // FTP FILE OPEN
-		logFtp = fopen("logFtp.txt","w");
-		if(logFtp == -1){
-			printf("FTP file open error\n");
-			return FORM_ERROR;
-		}
-	} else if(flag == FORM_HTTP){// HTTP FILE OPEN
-		logHttp = fopen("logHttp.txt","w");
-		if(logHttp == -1){
-			printf("HTTP file open error\n");
-			return FORM_ERROR;
-		}
-	} else if(flag == FORM_DNS){ // DNS FILE OPEN
-		logDns = fopen("logDns.txt","w");
-		if(logDns == -1){
-			printf("DNS file open error\n");
-			return FORM_ERROR;
-		}
-	} else if(flag == FORM_TELNET){ // TELNET FILE OPEN
-		logTelnet = fopen("logTelnet.txt","w");
-		if(logTelnet == -1){
-			printf("TELENT file open error\n");
-			return FORM_ERROR;
-		}
+
+    switch (iph->protocol){ //Check the Protocol and do accordingly...
+        case 6:  //TCP Protocol
+			if(flag == FORM_FTP){
+				 ++tcp;
+			    //PrintTcpPacket(buffer , size);
+				printf("start ProcessPacket()PrintCaptureForm\n");
+				fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
+				PrintFtpPacketCmd(buffer,size);
+				PrintFtpPacket(buffer,size);
+			} else if(flag == FORM_HTTP){
+
+
+			} else if(flag == FORM_TELNET){
+
+			}
+            break;
+         
+		case 17: //UDP Protocol
+			if(flag == FORM_DNS){
+				++udp;
+				PrintUdpPacket(buffer , size);
+			}
+            break;
+        default: //Some Other Protocol like ARP etc.
+            ++others;
+			break;
 	}
 
 	choice = fgetc(stdin);
@@ -119,27 +84,27 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 			break;
 		switch(flag) {
 			case FORM_TCP:
-				PrintTcpPacketCmd(buffer,data_size);
+				PrintTcpPacketCmd(buffer, size);
 				break;
 			case FORM_UDP:
-				PrintUdpPacketCmd(buffer,data_size);
+				PrintUdpPacketCmd(buffer, size);
 				break;
 			case FORM_ICMP:
-				PrintIcmpPacketCmd(buffer,data_size);
+				PrintIcmpPacketCmd(buffer, size);
 				break;
 			case FORM_FTP:
 				printf("start FORM_FTP in PrintCaptureForm\n");
-				PrintFtpPacketCmd(buffer,data_size);
-				PrintFtpPacket(buffer,data_size);
+				PrintFtpPacketCmd(buffer, size);
+				PrintFtpPacket(buffer, size);
 				break;
 			case FORM_HTTP:
-				PrintHttpPacketCmd(buffer,data_size);
+				PrintHttpPacketCmd(buffer, size);
 				break;
 			case FORM_IP:
-				PrintIpHeaderCmd(buffer,data_size);
+				PrintIpHeaderCmd(buffer, size);
 				break;
 			case FORM_DATA:
-				PrintDataCmd(buffer,data_size);
+				PrintDataCmd(buffer, size);
 				break;
 
 		default:
@@ -152,18 +117,9 @@ int PrintCaptureForm(unsigned char *buffer, int data_size, int flag){
 	}
 
 	
-	//file close
-	if(flag == FORM_FTP){ //FTP close file
-		close(logFtp);
-	} else if (flag == FORM_HTTP){ //HTTP close file
-		close(logHttp);
-	} else if (flag == FORM_DNS){ //DNS close file
-		close(logDns);
-	} else if (flag == FORM_TELNET){ //TELNET close file
-		close(logTelnet);
-	}
 
 
+    printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d\r",tcp,udp,icmp,igmp,others,total);
 
 
 	return 0;
@@ -453,7 +409,7 @@ void PrintFtpPacketCmd(unsigned char*buffer, int size){
 }
 
 void PrintFtpPacket(unsigned char* buffer, int size){
-	fprintf(logfile,"PrintFtpPacket() function start \n");
+	fprintf(logFtp,"PrintFtpPacket() function start \n");
 	
 
     unsigned short iphdrlen;
@@ -463,8 +419,8 @@ void PrintFtpPacket(unsigned char* buffer, int size){
      
     struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
 	
-	fprintf(logfile,"buffer : %s , size : %d\n", buffer, size);
-    fprintf(logfile,"FTP Data Payload\n");  
+	fprintf(logFtp,"buffer : %s , size : %d\n", buffer, size);
+    fprintf(logFtp,"FTP Data Payload\n");  
     PrintFtpData(buffer + iphdrlen + tcph->doff*4 , (size - tcph->doff*4-iph->ihl*4));
 
 }
@@ -511,41 +467,41 @@ void PrintFtpDataCmd(unsigned char* data, int size){
 
 void PrintFtpData(unsigned char* data, int size){
 
-	fprintf(logfile,"==================start=================\n");
-	fprintf(logfile,"PrintFtpDataCmd() function start\n");
+	fprintf(logFtp,"==================start=================\n");
+	fprintf(logFtp,"PrintFtpDataCmd() function start\n");
 	for(i=0 ; i < size ; i++)
 	{
 		if( i!=0 && i%16==0)   //if one line of hex printing is complete...
 		{
-			//fprintf(logfile,"         ");
+			//fprintf(logFtp,"         ");
 			for(j=i-16 ; j<i ; j++)
 			{
 				if(data[j]>=32 && data[j]<=128)
-					fprintf(logfile,"%c",(unsigned char)data[j]); //if its a number or alphabet
+					fprintf(logFtp,"%c",(unsigned char)data[j]); //if its a number or alphabet
 				 
-				else fprintf(logfile,""); //otherwise print a dot
+				else fprintf(logFtp,""); //otherwise print a dot
 			}
-			//fprintf(logfile,"\n");
+			//fprintf(logFtp,"\n");
 		} 
 		 
-		if(i%16==0) fprintf(logfile,"");
-			//fprintf(logfile," %02X",(unsigned int)data[i]);
+		if(i%16==0) fprintf(logFtp,"");
+			//fprintf(logFtp," %02X",(unsigned int)data[i]);
 				 
 		if( i==size-1)  //print the last spaces
 		{
-			for(j=0;j<15-i%16;j++) fprintf(logfile,""); //extra spaces
+			for(j=0;j<15-i%16;j++) fprintf(logFtp,""); //extra spaces
 			 
-			fprintf(logfile,"+++++++++");
+			fprintf(logFtp,"+++++++++");
 			 
 			for (j=i-i%16 ; j<=i ; j++)
 			{
-				if(data[j]>=32 && data[j]<=128) fprintf(logfile,"%c",(unsigned char)data[j]);
-				else fprintf(logfile,"");
+				if(data[j]>=32 && data[j]<=128) fprintf(logFtp,"%c",(unsigned char)data[j]);
+				else fprintf(logFtp,"");
 			}
-			fprintf(logfile,"\n");
+			fprintf(logFtp,"\n");
 		}
 	}
-	fprintf(logfile,"=============================end============\n");
+	fprintf(logFtp,"=============================end============\n");
 }
 
 //////////////////////**********//////////////////////////////

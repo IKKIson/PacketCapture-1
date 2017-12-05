@@ -72,3 +72,7 @@ void PrintFtpData(unsigned char*, int); //log.txt
 //전역변수
 FILE *logfile;
 int sock_raw;
+FILE *logFtp;
+FILE *logHttp;
+FILE *logDns;
+FILE *logTelnet;
