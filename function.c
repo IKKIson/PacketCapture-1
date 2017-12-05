@@ -1,129 +1,108 @@
 #include "stdhdr.h"
 
-static int tcp=0,udp=0,icmp=0,others=0,igmp=0,total=0,i,j;
-struct sockaddr_in source,dest;
-
-// ETC function
-void PrintMain(){
-	printf("------------------------\n");
-	printf("PacketCapture Program\n");
-	printf("------------------------\n");
-	printf("q : exit program\b");
-	printf("t : tcp capture\n");
-	printf("u : udp capture\n");
-	printf("f : ftp capture\n");
-	printf("h : http capture\n");
-	printf("i : ip capture\n");
-	printf("d : data capture\n");
-	printf("m : trans tcp packet Test\n");
-	printf("? : help\n");
-	printf("------------------------\n");
-	printf("option : ");
-
-}
-
-//버퍼 없애기
-//void ClearReadBuffer(){
-//	if(stdin->_cnt){
-//		while(getchar() != '\n');
-//	}
-//}
-
-void PrintHelp(){
-	printf("m 누르고 패킷 전송해봅세. 그 후에 t 누른 후 패킷 보면 됨.\n");
-}
 
 
-int PrintCaptureForm(unsigned char *buffer, int size, int flag){
+int PrintCaptureForm(int flag){
+
+	char choice;
+
+    int saddr_size , data_size; //socket address size, data size
+    struct sockaddr saddr; //소켓 주소를 표현하는 구조체 saddr변수 선언
+    struct in_addr in; //IPv4 인터넷 주소관련 구조체 변수 선un
+    unsigned char *buffer = (unsigned char *)malloc(MAX_BUFFER_SIZE); //MAX_BUFFER_SIE만큼의 크기를 가진 unsigned char형 buffer 포인터를 할당
 
     //Get the IP Header part of this packet
     struct iphdr *iph = (struct iphdr*)buffer;
     ++total;
 
-	//TODO: 자식 프로세스로 따로 출력할지 고려해봐야 함. 실시간으로 출력하면서 케맨드 입력이 가능하게 만들어야 함.
-	char choice;
-	int updateCount=0;
 
 	//file open
+	OpenFile(); //open .txt file
+
+	//raw socket을 만듬 
+	//IPv4인터넷 프로토콜, raw socket으로, TCP프로토콜이 사용됨.
+	if(flag == FORM_HTTP || flag == FORM_TELNET || flag == FORM_FTP ){// if tcp protocol
+		sock_raw_tcp = socket(AF_INET , SOCK_RAW , IPPROTO_TCP);
+		if(sock_raw_tcp < 0){ //raw_socket 오류 처리
+		 printf("TCP Socket Error\n");
+		 return FORM_ERROR;
+		}
+	} else if(flag == FORM_DNS){ //if udp protocol
+		sock_raw_udp = socket(AF_INET, SOCK_RAW , IPPROTO_UDP);
+		if(sock_raw_udp < 0){
+			printf("UDP Socket Error\n");
+			return FORM_ERROR;
+		}
+	} else {
+		printf("PrintCaptureFrom() flag error\n");
+		return FORM_ERROR;
+	}
+
+
+	saddr_size = sizeof(saddr);//input socket struct size in saddr_size
+	printf("saddr_size : %d",saddr_size);//TODO : Can I Delete????
+
+    //Receive a packet
+    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+    if(data_size < 0 ){ //occure recvfrom error
+        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
+        return FORM_ERROR;
+	}
 
     switch (iph->protocol){ //Check the Protocol and do accordingly...
         case 6:  //TCP Protocol
 			if(flag == FORM_FTP){
-				 ++tcp;
-			    //PrintTcpPacket(buffer , size);
-				printf("start ProcessPacket()PrintCaptureForm\n");
-				fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
-				PrintFtpPacketCmd(buffer,size);
-				PrintFtpPacket(buffer,size);
+///////////////////dev : Jang /////////////////////
+			    //PrintTcpPacket(buffer , saddr_size);
+				//iprintf("start ProcessPacket()PrintCaptureForm\n");
+				//fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
+				PrintFtpPacketCmd(buffer,saddr_size);
+				PrintFtpPacket(buffer,saddr_size);
+///////////////////end : Jang /////////////////////
+				++ftp;
 			} else if(flag == FORM_HTTP){
 
 
+
+				++http;
 			} else if(flag == FORM_TELNET){
 
+				++telnet;
 			}
+			++tcp;
             break;
          
 		case 17: //UDP Protocol
 			if(flag == FORM_DNS){
-				++udp;
-				PrintUdpPacket(buffer , size);
+				PrintUdpPacket(buffer , saddr_size);
 			}
+			++dns;
+			++udp;
             break;
         default: //Some Other Protocol like ARP etc.
             ++others;
 			break;
 	}
 
-	//choice = fgetc(stdin);
-	//ClearReadBuffer();
-	//while(choice != 'q') {
-		system("clear");
-		printf("press any key, then update.\nq : quit\n");
-		printf("%d times update\n",updateCount);
-		//if(choice == 'q')
-		//	break;
-		switch(flag) {
-			case FORM_TCP:
-				PrintTcpPacketCmd(buffer, size);
-				break;
-			case FORM_UDP:
-				PrintUdpPacketCmd(buffer, size);
-				break;
-			case FORM_ICMP:
-				PrintIcmpPacketCmd(buffer, size);
-				break;
-			case FORM_FTP:
-				printf("start FORM_FTP in PrintCaptureForm\n");
-				PrintFtpPacketCmd(buffer, size);
-				PrintFtpPacket(buffer, size);
-				break;
-			case FORM_HTTP:
-				PrintHttpPacketCmd(buffer, size);
-				break;
-			case FORM_IP:
-				PrintIpHeaderCmd(buffer, size);
-				break;
-			case FORM_DATA:
-				PrintDataCmd(buffer, size);
-				break;
-
-		default:
-				return FORM_ERROR;
-			break;
-		}
-
-		updateCount++;
-		choice = fgetc(stdin);
-		printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d\r",tcp,udp,icmp,igmp,others,total);
-	//}
-
-	
+	choice = fgetc(stdin);
+	printf("TCP : %d   UDP : %d   HTTP : %d   FTP : %d   TELNET : %d   DNS : %d   Others : %d   Total : %d\n",tcp, udp, http, ftp, telnet, dns, others, total);
 
 
+	CloseFile(); //close .txt file
 
-
+	if(flag == FORM_DNS){// UDP
+		close(sock_raw_udp); //close udp raw socket
+	} else if(flag == FORM_HTTP || flag == FORM_FTP || flag == FORM_TELNET) { //TCP
+		close(sock_raw_tcp); //close tcp raw socket
+	} else { // 
+		printf("PrintCaptureForm() close() error\n");
+		return FORM_ERROR;
+	}
+	system("clear");//화면 지움
 	return 0;
 }
+
+
 
 //IP function
 void PrintIpHeader(unsigned char* buffer, int size){
@@ -338,57 +317,11 @@ void PrintUdpPacketCmd(unsigned char *buffer , int size){
     printf("\n###########################################################");
 }
 
-//Icmp function 
-//TODO: Icmp 구현해야되나 고려
-void PrintIcmpPacket(unsigned char *buffer, int size){
-}
-void PrintIcmpPacketCmd(unsigned char* buffer , int size){
-}
 
-void WriteIcmpPacketFile(unsigned char *buffer, int size){
-
-    unsigned short iphdrlen;
-     
-    struct iphdr *iph = (struct iphdr *)buffer;
-    iphdrlen = iph->ihl*4;
-     
-    struct icmphdr *icmph = (struct icmphdr *)(buffer + iphdrlen);
-             
-    fprintf(logfile,"\n\n***********************ICMP Packet*************************\n");   
-     
-    PrintIpHeader(buffer , size);
-             
-    fprintf(logfile,"\n");
-         
-    fprintf(logfile,"ICMP Header\n");
-    fprintf(logfile,"   |-Type : %d",(unsigned int)(icmph->type));
-             
-    if((unsigned int)(icmph->type) == 11) 
-        fprintf(logfile,"  (TTL Expired)\n");
-    else if((unsigned int)(icmph->type) == ICMP_ECHOREPLY) 
-        fprintf(logfile,"  (ICMP Echo Reply)\n");
-    fprintf(logfile,"   |-Code : %d\n",(unsigned int)(icmph->code));
-    fprintf(logfile,"   |-Checksum : %d\n",ntohs(icmph->checksum));
-    //fprintf(logfile,"   |-ID       : %d\n",ntohs(icmph->id));
-    //fprintf(logfile,"   |-Sequence : %d\n",ntohs(icmph->sequence));
-    fprintf(logfile,"\n");
- 
-    fprintf(logfile,"IP Header\n");
-    PrintData(buffer,iphdrlen);
-         
-    fprintf(logfile,"UDP Header\n");
-    PrintData(buffer + iphdrlen , sizeof icmph);
-         
-    fprintf(logfile,"Data Payload\n");  
-    PrintData(buffer + iphdrlen + sizeof icmph , (size - sizeof icmph - iph->ihl * 4));
-    fprintf(logfile,"\n###########################################################");
-     
-}
+//////////////// Dev : Jang ////////////////
 //TODO : 구현해야 함.
 //Ftp function
-///////////////////////////////************/////////////////
 /* ftp */
-
 void PrintFtpPacketCmd(unsigned char*buffer, int size){
 	printf("PrintFtpPacketCmd() function start\n");
 	unsigned short iphdrlen;
@@ -504,7 +437,9 @@ void PrintFtpData(unsigned char* data, int size){
 	fprintf(logFtp,"=============================end============\n");
 }
 
-//////////////////////**********//////////////////////////////
+////////////////////// End : Jang /////////////////////////////
+
+
 //Http function
 void PrintHttpPacketCmd(unsigned char* buffer, int size){
 	
@@ -587,4 +522,64 @@ void PrintDataCmd (unsigned char* data , int size)
         }
     }
 }
+
+//////////////////////// e t c  function////////////////////////
+void OpenFile(){
+    //file open
+    logfile=fopen("log.txt","w"); //log.txt파일을 write로 연다.
+    if(logfile==NULL) //파일 열기 오류시 
+		printf("Unable to create file."); //오류 메시지 출력
+
+	logFtp = fopen("logFtp.txt","w");
+	if(logFtp == NULL)
+		printf("FTP file open error\n");
+
+	logHttp = fopen("logHttp.txt","w");
+	if(logHttp == NULL)
+		printf("HTTP file open error\n");
+
+	logDns = fopen("logDns.txt","w");
+	if(logDns == NULL)
+		printf("DNS file open error\n");
+
+	logTelnet = fopen("logTelnet.txt","w");
+	if(logTelnet == NULL)
+		printf("TELENT file open error\n");
+}
+
+void CloseFile(){
+	//file close
+//	close(logFtp);
+//	close(logHttp);
+//	close(logDns);
+//	close(logTelnet);
+//	close(logfile);
+}
+
+void PrintHelp(){
+	printf("m 누르고 패킷 전송해봅세. 그 후에 t 누른 후 패킷 보면 됨.\n");
+}
+
+// ETC function
+void PrintMain(){
+	printf("------------------------\n");
+	printf("PacketCapture Program\n");
+	printf("------------------------\n");
+	printf("q : exit program\b");
+	printf("f : FTP capture\n");
+	printf("h : HTTP capture\n");
+	printf("t : TELNET capture\n");
+	printf("d : DNS capture\n");
+	printf("? : help\n");
+	printf("------------------------\n");
+	printf("option : ");
+
+}
+
+//버퍼 없애기
+//void ClearReadBuffer(){
+//	if(stdin->_cnt){
+//		while(getchar() != '\n');
+//	}
+//}
 

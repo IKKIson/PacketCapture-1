@@ -18,19 +18,14 @@
 //Define
 #define MAX_BUFFER_SIZE 65536
 
+#ifndef _CaptureForm_
 //PrintCaptureForm()함수의 flag값
-#define FORM_TCP 1
-#define FORM_UDP 2
-#define FORM_FTP 3
-#define FORM_HTTP 4
-#define FORM_IGMP 5  //TODO: 지우는거 결정
-#define FORM_ICMP 6 //TODO: 지우는거 결정
-#define FORM_IP 7
-#define FORM_DATA 8
-#define FORM_TELNET 9
-#define FORM_DNS 10
+#define FORM_FTP 1
+#define FORM_HTTP 2
+#define FORM_TELNET 3
+#define FORM_DNS 4
 #define FORM_ERROR -1
-
+#endif
 
 
 //함수
@@ -53,8 +48,13 @@ void PrintIcmpPacketCmd(unsigned char *, int);//cmd창에 출력
 void PrintData (unsigned char* , int);//log.txt파일로 출력
 void PrintDataCmd (unsigned char* , int);//cmd창에 출력
 
+////////////// dev : Jang ////////////
 void PrintFtpPacketCmd(unsigned char*, int);//log.txt파일로 출력
 void PrintFtpPacket(unsigned char*, int);//cmd창에 출력
+
+void PrintFtpDataCmd(unsigned char*, int); //cmd output
+void PrintFtpData(unsigned char*, int); //log.txt
+///////////// end : Jang /////////////
 
 void PrintHttpPacketCmd(unsigned char*, int);//log.txt파일로 출력
 void PrintHttpPacket(unsigned char*, int);//cmd창에 출력
@@ -63,16 +63,20 @@ void PrintHelp();//도움말출력 함수
 void PrintMain();//메인문 출력
 //void ClearReadBuffer();//버퍼 없애기.
 
-int PrintCaptureForm(unsigned char*, int, int); //cmd 창에 출력하기 위한 폼
+int PrintCaptureForm(int); // --- English.. --- someone adding me
 
-void PrintFtpDataCmd(unsigned char*, int); //cmd output
-void PrintFtpData(unsigned char*, int); //log.txt
 
+void OpenFile();//open file
+void CloseFile();//close file
 
 //전역변수
 FILE *logfile;
-int sock_raw;
-FILE *logFtp;
-FILE *logHttp;
-FILE *logDns;
-FILE *logTelnet;
+int sock_raw_tcp;
+int sock_raw_udp;
+FILE *logFtp; //for FTP file
+FILE *logHttp; //for HTTP file
+FILE *logDns; //for DNS file
+FILE *logTelnet; // TELNET file
+
+static int http=0,ftp=0,dns=0,telnet=0,tcp=0,udp=0,others=0,total=0,i,j;
+struct sockaddr_in source,dest;
