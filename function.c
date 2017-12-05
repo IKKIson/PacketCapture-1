@@ -74,14 +74,14 @@ int PrintCaptureForm(unsigned char *buffer, int size, int flag){
 			break;
 	}
 
-	choice = fgetc(stdin);
+	//choice = fgetc(stdin);
 	//ClearReadBuffer();
-	while(choice != 'q') {
+	//while(choice != 'q') {
 		system("clear");
 		printf("press any key, then update.\nq : quit\n");
 		printf("%d times update\n",updateCount);
-		if(choice == 'q')
-			break;
+		//if(choice == 'q')
+		//	break;
 		switch(flag) {
 			case FORM_TCP:
 				PrintTcpPacketCmd(buffer, size);
@@ -114,12 +114,12 @@ int PrintCaptureForm(unsigned char *buffer, int size, int flag){
 
 		updateCount++;
 		choice = fgetc(stdin);
-	}
+		printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d\r",tcp,udp,icmp,igmp,others,total);
+	//}
 
 	
 
 
-    printf("TCP : %d   UDP : %d   ICMP : %d   IGMP : %d   Others : %d   Total : %d\r",tcp,udp,icmp,igmp,others,total);
 
 
 	return 0;

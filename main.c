@@ -41,18 +41,18 @@ int main(void)
     }
 
 
-	while(1){
+//	while(1){
 	
-		//screen
-		system("clear");
-		PrintMain(); //화면표시 틀 출력
-		optionChoice = fgetc(stdin); //선택 옵션을 키보드로 받아옴
-		//ClearReadBuffer(); //버퍼 비움
-		if(optionChoice == 'q')
-			break;
 	    while(1)
 	    {
 			
+			//screen
+			system("clear");
+			PrintMain(); //화면표시 틀 출력
+			optionChoice = fgetc(stdin); //선택 옵션을 키보드로 받아옴
+			//ClearReadBuffer(); //버퍼 비움
+			if(optionChoice == 'q')
+				break;
 	
 	        saddr_size = sizeof(saddr);
 			printf("saddr_size : %d",saddr_size);
@@ -92,12 +92,12 @@ int main(void)
 				default : //다른 키 눌렀을 시
 					break;
 			}		
-			system("clear");
-			PrintMain(); //화면표시 틀 출력
+	//		system("clear");
+	//		PrintMain(); //화면표시 틀 출력
 	
 	    }
 	
-	}
+//	}
 
 	//file close
 //	close(logFtp);
