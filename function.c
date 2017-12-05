@@ -7,7 +7,6 @@ int PrintCaptureForm(int flag){
 	char choice;
 
     int saddr_size , data_size; //socket address size, data size
-    struct sockaddr saddr; //소켓 주소를 표현하는 구조체 saddr변수 선언
     struct in_addr in; //IPv4 인터넷 주소관련 구조체 변수 선un
     unsigned char *buffer = (unsigned char *)malloc(MAX_BUFFER_SIZE); //MAX_BUFFER_SIE만큼의 크기를 가진 unsigned char형 buffer 포인터를 할당
 
@@ -19,6 +18,7 @@ int PrintCaptureForm(int flag){
 	//file open
 	OpenFile(); //open .txt file
 
+	printf("STARTING PRINTCAPTURE()\n");
 	//raw socket을 만듬 
 	//IPv4인터넷 프로토콜, raw socket으로, TCP프로토콜이 사용됨.
 	if(flag == FORM_HTTP || flag == FORM_TELNET || flag == FORM_FTP ){// if tcp protocol
@@ -38,26 +38,43 @@ int PrintCaptureForm(int flag){
 		return FORM_ERROR;
 	}
 
+	printf("STARTING PRINTCAPTURE()\n");
 
-	saddr_size = sizeof(saddr);//input socket struct size in saddr_size
-	printf("saddr_size : %d",saddr_size);//TODO : Can I Delete????
-
-    //Receive a packet
-    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
-    if(data_size < 0 ){ //occure recvfrom error
-        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
-        return FORM_ERROR;
+	//TODO : HAVE TO USE UDP. have to make flag and make if() tcp and udp
+	//Get new packet (TCP)
+	if((&saddr_size, &data_size) < 0) {
+		printf("GetNewPacket() ERROR\n");
+		return FORM_ERROR;
 	}
-
+	
     switch (iph->protocol){ //Check the Protocol and do accordingly...
         case 6:  //TCP Protocol
 			if(flag == FORM_FTP){
 ///////////////////dev : Jang /////////////////////
-			    //PrintTcpPacket(buffer , saddr_size);
-				//iprintf("start ProcessPacket()PrintCaptureForm\n");
-				//fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
-				PrintFtpPacketCmd(buffer,saddr_size);
-				PrintFtpPacket(buffer,saddr_size);
+				{
+					//char str;
+					//str = fgetc(stdin);
+					while(1){
+
+
+						if((&saddr_size, &data_size) < 0) {
+							printf("GetNewPacket() ERROR\n");
+							return FORM_ERROR;
+						}
+
+
+						//if(str == 'q'){
+							printf("FTP capture Exit\n");
+						//}
+						PrintTcpPacketCmd(buffer,saddr_size);
+					    //PrintTcpPacket(buffer , saddr_size);
+						//iprintf("start ProcessPacket()PrintCaptureForm\n");
+						//fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
+						PrintFtpPacketCmd(buffer,saddr_size);
+						PrintFtpPacket(buffer,saddr_size);
+					}
+					
+				}
 ///////////////////end : Jang /////////////////////
 				++ftp;
 			} else if(flag == FORM_HTTP){
@@ -565,7 +582,7 @@ void PrintMain(){
 	printf("------------------------\n");
 	printf("PacketCapture Program\n");
 	printf("------------------------\n");
-	printf("q : exit program\b");
+	printf("q : exit program\n");
 	printf("f : FTP capture\n");
 	printf("h : HTTP capture\n");
 	printf("t : TELNET capture\n");
@@ -582,4 +599,20 @@ void PrintMain(){
 //		while(getchar() != '\n');
 //	}
 //}
+int GetNewPacket(int *data, int *size){
+    struct sockaddr saddr; //소켓 주소를 표현하는 구조체 saddr변수 선언
+	struct in_addr in;
+	unsigned char *buffer = (unsigned char *)malloc(MAX_BUFFER_SIZE);
+	struct iphdr *iph = (struct iphdr *)buffer;
 
+*size = sizeof(saddr); // input socket struct size in saddr_size
+
+	//Receive a packet
+
+	*data = recvfrom(sock_raw_tcp, buffer, MAX_BUFFER_SIZE, &saddr, size);
+	if(*size < 0 ) {
+		printf("can't get data recvfrom() \n");
+		return -1;
+	}
+	return 0;
+}

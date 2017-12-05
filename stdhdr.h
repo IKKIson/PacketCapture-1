@@ -56,8 +56,8 @@ void PrintFtpDataCmd(unsigned char*, int); //cmd output
 void PrintFtpData(unsigned char*, int); //log.txt
 ///////////// end : Jang /////////////
 
-void PrintHttpPacketCmd(unsigned char*, int);//log.txt파일로 출력
-void PrintHttpPacket(unsigned char*, int);//cmd창에 출력
+void PrintHttpPacketCmd(unsigned char*, int);//cmd 출력
+void PrintHttpPacket(unsigned char*, int);//log.txt에 출력
 
 void PrintHelp();//도움말출력 함수
 void PrintMain();//메인문 출력
@@ -68,6 +68,7 @@ int PrintCaptureForm(int); // --- English.. --- someone adding me
 
 void OpenFile();//open file
 void CloseFile();//close file
+int GetNewPacket(int *, int *);
 
 //전역변수
 FILE *logfile;
