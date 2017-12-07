@@ -42,9 +42,6 @@ void PrintTcpPacketCmd(unsigned char*, int);//cmd창에 출력
 void PrintUdpPacket(unsigned char * , int);//log.txt파일로 출력함
 void PrintUdpPacketCmd(unsigned char *, int);//cmd창에 출력
 
-void PrintIcmpPacket(unsigned char* , int);//log.txt파일로 출력함
-void PrintIcmpPacketCmd(unsigned char *, int);//cmd창에 출력
-
 void PrintData (unsigned char* , int);//log.txt파일로 출력
 void PrintDataCmd (unsigned char* , int);//cmd창에 출력
 

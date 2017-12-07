@@ -40,8 +40,6 @@ int PrintCaptureForm(int flag){
 
 
 	saddr_size = sizeof(saddr);//input socket struct size in saddr_size
-	printf("saddr_size : %d",saddr_size);//TODO : Can I Delete????
-
     //Receive a packet
     data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
     if(data_size < 0 ){ //occure recvfrom error
@@ -53,11 +51,26 @@ int PrintCaptureForm(int flag){
         case 6:  //TCP Protocol
 			if(flag == FORM_FTP){
 ///////////////////dev : Jang /////////////////////
-			    //PrintTcpPacket(buffer , saddr_size);
-				//iprintf("start ProcessPacket()PrintCaptureForm\n");
-				//fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
-				PrintFtpPacketCmd(buffer,saddr_size);
-				PrintFtpPacket(buffer,saddr_size);
+				while(1){
+
+					saddr_size = sizeof(saddr);//input socket struct size in saddr_size
+				
+				    //Receive a packet
+				    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+				    if(data_size < 0 ){ //occure recvfrom error
+				        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
+				        return FORM_ERROR;
+					}
+					
+					PrintIpHeader(buffer, saddr_size);
+					PrintIpHeaderCmd(buffer, saddr_size);
+					PrintTcpPacketCmd(buffer, saddr_size);
+				    PrintTcpPacket(buffer , saddr_size);
+					//iprintf("start ProcessPacket()PrintCaptureForm\n");
+					//fprintf(logFtp,"start ProcessPacket()PrintCaptureForm\n");
+					PrintFtpPacketCmd(buffer,saddr_size);
+					PrintFtpPacket(buffer,saddr_size);
+					}
 ///////////////////end : Jang /////////////////////
 				++ftp;
 			} else if(flag == FORM_HTTP){
@@ -565,7 +578,7 @@ void PrintMain(){
 	printf("------------------------\n");
 	printf("PacketCapture Program\n");
 	printf("------------------------\n");
-	printf("q : exit program\b");
+	printf("q : exit program\n");
 	printf("f : FTP capture\n");
 	printf("h : HTTP capture\n");
 	printf("t : TELNET capture\n");
