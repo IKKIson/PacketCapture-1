@@ -29,32 +29,20 @@
 
 
 //함수
+void PrintIpHeader(unsigned char* , int, FILE *);
 
-//TODO: ProcessPacket 지울지 고려
-void ProcessPacket(unsigned char* , int);
+void PrintTcpPacket(unsigned char* , int, FILE *);
 
-void PrintIpHeader(unsigned char* , int);//log.txt파일로 출력함. 
-void PrintIpHeaderCmd(unsigned char *, int);//cmd창에 출력
+void PrintUdpPacket(unsigned char * , int, FILE *);
 
-void PrintTcpPacket(unsigned char* , int);//log.txt파일로 출력함
-void PrintTcpPacketCmd(unsigned char*, int);//cmd창에 출력
-
-void PrintUdpPacket(unsigned char * , int);//log.txt파일로 출력함
-void PrintUdpPacketCmd(unsigned char *, int);//cmd창에 출력
-
-void PrintData (unsigned char* , int);//log.txt파일로 출력
-void PrintDataCmd (unsigned char* , int);//cmd창에 출력
+void PrintData (unsigned char* , int, FILE *);
 
 ////////////// dev : Jang ////////////
-void PrintFtpPacketCmd(unsigned char*, int);//log.txt파일로 출력
-void PrintFtpPacket(unsigned char*, int);//cmd창에 출력
-
-void PrintFtpDataCmd(unsigned char*, int); //cmd output
-void PrintFtpData(unsigned char*, int); //log.txt
+void PrintFtpPacket(unsigned char*, int, FILE *);//ftp packet print 
+void PrintFtpData(unsigned char*, int, FILE *); //ftp data print
 ///////////// end : Jang /////////////
 
-void PrintHttpPacketCmd(unsigned char*, int);//log.txt파일로 출력
-void PrintHttpPacket(unsigned char*, int);//cmd창에 출력
+void PrintHttpPacket(unsigned char*, int, FILE *);
 
 void PrintHelp();//도움말출력 함수
 void PrintMain();//메인문 출력
@@ -67,12 +55,11 @@ void OpenFile();//open file
 void CloseFile();//close file
 
 //전역변수
-FILE *logfile;
 int sock_raw_tcp;
 int sock_raw_udp;
-FILE *logFtp; //for FTP file
-FILE *logHttp; //for HTTP file
-FILE *logDns; //for DNS file
+FILE *logFtp; // FTP file
+FILE *logHttp; // HTTP file
+FILE *logDns; // DNS file
 FILE *logTelnet; // TELNET file
 
 static int http=0,ftp=0,dns=0,telnet=0,tcp=0,udp=0,others=0,total=0,i,j;

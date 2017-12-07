@@ -40,10 +40,8 @@ int main()
     while(1)
     {
         saddr_size = sizeof saddr;
-		printf("saddR_size : %d", saddr_size);
         //Receive a packet
         data_size = recvfrom(sock_raw , buffer , 65536 , 0 , &saddr , &saddr_size);
-		printf("datA size : %d", data_size);
         if(data_size <0 )
         {
             printf("Recvfrom error , failed to get packets\n");
@@ -75,7 +73,6 @@ void ProcessPacket(unsigned char* buffer, int size)
          
         case 6:  //TCP Protocol
             ++tcp;
-			printf("buffeR : %s, sizE : %d\n", buffer, size);
             print_tcp_packet(buffer , size);
             break;
          
@@ -93,7 +90,6 @@ void ProcessPacket(unsigned char* buffer, int size)
  
 void print_ip_header(unsigned char* Buffer, int Size)
 {
-	fprintf(logfile,"--print_ip_header start--\n");
     unsigned short iphdrlen;
          
     struct iphdr *iph = (struct iphdr *)Buffer;
@@ -131,7 +127,6 @@ void print_tcp_packet(unsigned char* Buffer, int Size)
      
     struct tcphdr *tcph=(struct tcphdr*)(Buffer + iphdrlen);
              
-	fprintf(logfile,"--print_tcp_packet start--\n");
     fprintf(logfile,"\n\n***********************TCP Packet*************************\n");    
          
 //    print_ip_header(Buffer,Size);
@@ -171,7 +166,6 @@ void print_tcp_packet(unsigned char* Buffer, int Size)
  
 void print_udp_packet(unsigned char *Buffer , int Size)
 {
-	fprintf(logfile,"--print_udp_packet start--\n");
      
     unsigned short iphdrlen;
      
@@ -205,7 +199,6 @@ void print_udp_packet(unsigned char *Buffer , int Size)
  
 void print_icmp_packet(unsigned char* Buffer , int Size)
 {
-	fprintf(logfile,"--print_icmp_packet() start--\n");
     unsigned short iphdrlen;
      
     struct iphdr *iph = (struct iphdr *)Buffer;
@@ -246,7 +239,6 @@ void print_icmp_packet(unsigned char* Buffer , int Size)
  
 void PrintData (unsigned char* data , int Size)
 {
-	fprintf(logfile, "--start PrintData--\ndata!: %s \n size! : %d",data, Size);
      
     for(i=0 ; i < Size ; i++)
     {
