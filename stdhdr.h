@@ -14,9 +14,20 @@
 #include <netinet/in.h>
 #include <sys/ioctl.h> 
 #include <sys/types.h>
+#include <stdarg.h>
+
+
+//Packet Capture for DataLink layer ETH_ALL_P
+#include <linux/if.h>
+#include <linux/if_ether.h>
+
 
 //Define
 #define MAX_BUFFER_SIZE 65536
+
+#define TRUE    1
+#define FALSE   0
+
 
 #ifndef _CaptureForm_
 //PrintCaptureForm()함수의 flag값
@@ -50,13 +61,15 @@ void PrintMain();//메인문 출력
 
 int PrintCaptureForm(int); // --- English.. --- someone adding me
 
+//Chang Promisc Mode in Program
+int SetPromiscMode(int );
 
 void OpenFile();//open file
 void CloseFile();//close file
 
 //전역변수
-int sock_raw_tcp;
-int sock_raw_udp;
+int sock_raw;
+//int sock_raw_udp;
 FILE *logFtp; // FTP file
 FILE *logHttp; // HTTP file
 FILE *logDns; // DNS file

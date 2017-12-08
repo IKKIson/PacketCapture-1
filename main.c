@@ -16,7 +16,7 @@ int main(void)
 
 		switch(optionChoice){//입력값에 따라 분기
 			case 'q': //종료
-				close(sock_raw_tcp); //sock_raw file discriptor를 닫는다.
+				close(sock_raw); //sock_raw file discriptor를 닫는다.
 				system("clear");
 				exit(1);
 				break;

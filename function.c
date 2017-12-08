@@ -19,30 +19,44 @@ int PrintCaptureForm(int flag){
     unsigned char *buffer = (unsigned char *)malloc(MAX_BUFFER_SIZE); //MAX_BUFFER_SIE만큼의 크기를 가진 unsigned char형 buffer 포인터를 할당
 
     //Get the IP Header part of this packet
-    struct iphdr *iph = (struct iphdr*)buffer;
-    ++total;
+    unsigned short iphdrlen;
+    struct iphdr *iph = (struct iphdr *)(buffer+14);
+    iphdrlen = iph->ihl*4;
+    struct udphdr *udph = (struct udphdr*)(buffer + 20 + 14);
+	struct tcphdr *tcph=(struct tcphdr*)(buffer + 20 + 14);
+
+	++total;
 
 	//file open
 	OpenFile(); //open .txt file
 
 	//raw socket을 만듬 
 	//IPv4인터넷 프로토콜, raw socket으로, TCP프로토콜이 사용됨.
-	if(flag == FORM_HTTP || flag == FORM_TELNET || flag == FORM_FTP ){// if tcp protocol
-		sock_raw_tcp = socket(AF_INET , SOCK_RAW , IPPROTO_TCP);
-		if(sock_raw_tcp < 0){ //raw_socket 오류 처리
-		 printf("TCP Socket Error\n");
-		 return FORM_ERROR;
-		}
-	} else if(flag == FORM_DNS){ //if udp protocol
-		sock_raw_udp = socket(AF_INET, SOCK_RAW , IPPROTO_UDP);
-		if(sock_raw_udp < 0){
-			printf("UDP Socket Error\n");
-			return FORM_ERROR;
-		}
-	} else {
-		printf("PrintCaptureFrom() flag error\n");
+	//if(flag == FORM_HTTP || flag == FORM_TELNET || flag == FORM_FTP ){// if tcp protocol
+	sock_raw = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL));//AF_INET , SOCK_RAW , IPPROTO_TCP);
+	if(sock_raw < 0){ //raw_socket 오류 처리
+		printf("Raw Socket Error\n");
 		return FORM_ERROR;
 	}
+	//} else if(flag == FORM_DNS){ //if udp protocol
+	//	sock_raw_udp = socket(AF_INET, SOCK_RAW , IPPROTO_UDP);
+	//	if(sock_raw_udp < 0){
+	//		printf("UDP Socket Error\n");
+	//		return FORM_ERROR;
+	//	}
+	//} else {
+	//	printf("PrintCaptureFrom() flag error\n");
+	//	return FORM_ERROR;
+	//}
+
+	//Promisc Mode for Raw socket Capture in dateLink Layer
+	// 네트워크 디바이스를 promiscous 모드로 변경
+        if(!SetPromiscMode(sock_raw)){
+                printf("set promiscous mode error\n");
+		return FORM_ERROR;
+	}
+	
+
 	printf("staring... if you don't want to packet capture anymore then you have to press key 'q' and enter \n");
 
 	switch(pid = fork()){
@@ -54,46 +68,65 @@ int PrintCaptureForm(int flag){
 		case 0://child process
 			while(1){
 				saddr_size = sizeof saddr;//input socket struct size in saddr_size
-			    //Receive a packet
-			    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
-			    if(data_size < 0 ){ //occure recvfrom error
-			        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
-			        return FORM_ERROR;
+			    	//Receive a packet
+				data_size = recvfrom(sock_raw, buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+				if(data_size < 0 ){ //occure recvfrom error
+			        	printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
+				        return FORM_ERROR;
 				}
-				iph = (struct iphdr*)buffer;
-		
-				//TODO: You Can add code in switch
-			    switch (iph->protocol){ //Check the Protocol and do accordingly...
-			        case 6:  //TCP Protocol
+				
+				switch (iph->protocol){ //Check the Protocol and do accordingly...
+			        	case 6:  //TCP Protocol
 						++tcp;
 						if(flag == FORM_FTP){
-							++ftp;
 			///////////////////dev : Jang /////////////////////
-							
-							PrintIpHeader(buffer,data_size,logFtp);
-							printf("\n");
-							fprintf(logFtp,"\n");
-							PrintFtpPacket(buffer,data_size, logFtp);
-		
+							if(ntohs(tcph->dest) == 20 || ntohs(tcph->source) == 20 || ntohs(tcph->dest) == 21 || ntohs(tcph->source) == 21){	
+								++ftp;
+								PrintIpHeader(buffer,data_size,logFtp);
+								printf("\n");
+								fprintf(logFtp,"\n");
+								PrintFtpPacket(buffer+14,data_size+14, logFtp);
 							
 			///////////////////end : Jang ////////////////////
-							printf("ftp : %d\n",ftp);
-							fprintf(logFtp,"ftp : %d\n",ftp);
+								printf("ftp : %d\n",ftp);
+								fprintf(logFtp,"ftp : %d\n",ftp);
+							}
 						} else if(flag == FORM_HTTP){
-			
-							++http;
+                        ///////////////////dev : Son /////////////////////
+							 if(ntohs(tcph->dest) == 80 || ntohs(tcph->source) == 80){
+								http++;
+								printf("HTTP Capture Start!!\n");
+								PrintIpHeader(buffer,data_size,logFtp);
+	                                                        printf("\n");
+	                                                        fprintf(logHttp,"\n");
+	                                                        PrintHttpPacket(buffer+14, data_size-14, logHttp);
+	                                                        printf("http : %d\n",http);
+	                                                        fprintf(logFtp,"http : %d\n",http);
+				                        }
+                        ///////////////////end : Son ////////////////////
 						} else if(flag == FORM_TELNET){
-			
-							++telnet;
+							if(ntohs(tcph->dest) == 23 || ntohs(tcph->source) == 23){
+								telnet++;
+
+
+
+
+							}
 						}
 			            break;
 			         
 					case 17: //UDP Protocol
 						if(flag == FORM_DNS){
-							PrintUdpPacket(buffer , data_size, logDns);
+							if(ntohs(udph->dest) == 53 || ntohs(udph->source) == 53){
+								++dns;
+		                                                ++udp;
+								PrintUdpPacket(buffer , data_size, logDns);
+
+
+
+
+							}
 						}
-						++dns;
-						++udp;
 			            break;
 			        default: //Some Other Protocol like ARP etc.
 			            ++others;
@@ -128,14 +161,14 @@ int PrintCaptureForm(int flag){
 
 	CloseFile(); //close .txt file
 
-	if(flag == FORM_DNS){// UDP
-		close(sock_raw_udp); //close udp raw socket
-	} else if(flag == FORM_HTTP || flag == FORM_FTP || flag == FORM_TELNET) { //TCP
-		close(sock_raw_tcp); //close tcp raw socket
-	} else { // 
-		printf("PrintCaptureForm() close() error\n");
-		return FORM_ERROR;
-	}
+	//if(flag == FORM_DNS){// UDP
+	//	close(sock_raw); //close udp raw socket
+	//} else if(flag == FORM_HTTP || flag == FORM_FTP || flag == FORM_TELNET) { //TCP
+		close(sock_raw); //close tcp raw socket
+	//} else { // 
+	//	printf("PrintCaptureForm() close() error\n");
+	//	return FORM_ERROR;
+	//}
 	system("clear");//화면 지움
 	return 0;
 }
@@ -460,6 +493,30 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
 
 //Http function
 void PrintHttpPacket(unsigned char* buffer, int size, FILE *logfile){
+	unsigned short iphdrlen;
+
+        struct iphdr *iph = (struct iphdr *)buffer;
+        iphdrlen = iph->ihl*4;
+
+        struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
+
+	fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source));
+	printf("   |-Source Port      : %u\n",ntohs(tcph->source));
+
+	fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest));
+	printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+
+        //Data Payload//
+        printf("HTTP Format Payload\n");
+	fprintf(logfile,"HTTP Format Payload\n");
+
+        PrintData(buffer + iphdrlen + tcph->doff*4, (size - tcph->doff*4-iph->ihl*4), logfile );
+
+
+        printf("---------------------\n");
+        fprintf(logfile,"---------------------\n");
+	
+
 }
 
 //Data function
@@ -580,6 +637,22 @@ void PrintMain(){
 	printf("------------------------\n");
 	printf("option : ");
 
+}
+
+//Chang Promisc Mode in Program
+int SetPromiscMode(int Sockfd)
+{
+        struct ifreq IfInfo;
+
+        strcpy(IfInfo.ifr_ifrn.ifrn_name, "ens33");
+        if(ioctl(Sockfd, SIOCGIFFLAGS, &IfInfo) < 0)
+                return FALSE;
+
+        IfInfo.ifr_ifru.ifru_flags ^= IFF_PROMISC;
+        if(ioctl(Sockfd, SIOCSIFFLAGS, &IfInfo) < 0)
+                return FALSE;
+
+        return TRUE;
 }
 
 //버퍼 없애기
