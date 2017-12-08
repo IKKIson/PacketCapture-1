@@ -4,7 +4,14 @@
 
 int PrintCaptureForm(int flag){
 
-	char choice;
+	pid_t pid;
+
+	int fd[2];
+	char buf[255];
+	int len, status;
+	int pipeFlag = 1;
+
+
 
     int saddr_size , data_size; //socket address size, data size
     struct sockaddr saddr; //소켓 주소를 표현하는 구조체 saddr변수 선언
@@ -36,57 +43,86 @@ int PrintCaptureForm(int flag){
 		printf("PrintCaptureFrom() flag error\n");
 		return FORM_ERROR;
 	}
-	printf("staring... \n");
-	while(1){
-		saddr_size = sizeof saddr;//input socket struct size in saddr_size
-	    //Receive a packet
-	    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
-	    if(data_size < 0 ){ //occure recvfrom error
-	        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
-	        return FORM_ERROR;
-		}
-		iph = (struct iphdr*)buffer;
+	printf("staring... if you don't want to packet capture anymore then you have to press key 'q' and enter \n");
 
-		//TODO: You Can add code in switch
-	    switch (iph->protocol){ //Check the Protocol and do accordingly...
-	        case 6:  //TCP Protocol
-				++tcp;
-				if(flag == FORM_FTP){
-					++ftp;
-	///////////////////dev : Jang /////////////////////
-					
-					PrintIpHeader(buffer,data_size,logFtp);
-					printf("\n");
-					fprintf(logFtp,"\n");
-					PrintFtpPacket(buffer,data_size, logFtp);
+	switch(pid = fork()){
+		case -1://error
+			perror("fock error");
+			exit(1);
+			CloseFile();
+			break;
+		case 0://child process
+			while(1){
+				saddr_size = sizeof saddr;//input socket struct size in saddr_size
+			    //Receive a packet
+			    data_size = recvfrom(sock_raw_tcp , buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
+			    if(data_size < 0 ){ //occure recvfrom error
+			        printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
+			        return FORM_ERROR;
+				}
+				iph = (struct iphdr*)buffer;
+		
+				//TODO: You Can add code in switch
+			    switch (iph->protocol){ //Check the Protocol and do accordingly...
+			        case 6:  //TCP Protocol
+						++tcp;
+						if(flag == FORM_FTP){
+							++ftp;
+			///////////////////dev : Jang /////////////////////
+							
+							PrintIpHeader(buffer,data_size,logFtp);
+							printf("\n");
+							fprintf(logFtp,"\n");
+							PrintFtpPacket(buffer,data_size, logFtp);
+		
+							
+			///////////////////end : Jang ////////////////////
+							printf("ftp : %d\n",ftp);
+							fprintf(logFtp,"ftp : %d\n",ftp);
+						} else if(flag == FORM_HTTP){
+			
+							++http;
+						} else if(flag == FORM_TELNET){
+			
+							++telnet;
+						}
+			            break;
+			         
+					case 17: //UDP Protocol
+						if(flag == FORM_DNS){
+							PrintUdpPacket(buffer , data_size, logDns);
+						}
+						++dns;
+						++udp;
+			            break;
+			        default: //Some Other Protocol like ARP etc.
+			            ++others;
+						break;
+				}
+			}
 
+			break;
+		default ://parent process
+			{
+				char choice;
+				while(1){
+					choice = fgetc(stdin);
+					if(choice == 'q'){
+						if((kill(pid, SIGKILL)) < 0){ //kill child process
+							printf("-back-\n");
+							sleep(1);
+						}else {
+							printf("-back-\n");
+							sleep(1);
+						}
+						break;
+						}
 					
-	///////////////////end : Jang ////////////////////
-					printf("ftp : %d\n",ftp);
-					fprintf(logFtp,"ftp : %d\n",ftp);
-				} else if(flag == FORM_HTTP){
-	
-					++http;
-				} else if(flag == FORM_TELNET){
-	
-					++telnet;
 				}
-	            break;
-	         
-			case 17: //UDP Protocol
-				if(flag == FORM_DNS){
-					PrintUdpPacket(buffer , data_size, logDns);
-				}
-				++dns;
-				++udp;
-	            break;
-	        default: //Some Other Protocol like ARP etc.
-	            ++others;
-				break;
-		}
+			}
+			break;
 	}
 
-	choice = fgetc(stdin);
 	printf("TCP : %d   UDP : %d   HTTP : %d   FTP : %d   TELNET : %d   DNS : %d   Others : %d   Total : %d\n",tcp, udp, http, ftp, telnet, dns, others, total);
 
 
