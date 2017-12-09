@@ -10,6 +10,7 @@ int PrintCaptureForm(int flag){
 	char buf[255];
 	int len, status;
 	int pipeFlag = 1;
+	int i=0;
 
 
 
@@ -106,13 +107,17 @@ int PrintCaptureForm(int flag){
                         ///////////////////end : Son ////////////////////
 						} else if(flag == FORM_TELNET){
 							if(ntohs(tcph->dest) == 23 || ntohs(tcph->source) == 23){
-								telnet++;
-
-
-
-
+								++telnet;
+								printf("telnet : %d\n",telnet);//Printing Packet Number on cmd
+								fprintf(logTelnet, "telnet : %d\n",telnet);//Printing Packet Number on File
+								printf("Capturing telnet packet!!\n");//Printing sentence
+								PrintIpHeader(buffer,data_size,logTelnet); // Printing Ip Header on cmd and File
+								printf("\n"); 
+								fprintf(logTelnet,"\n"); 
+								PrintTelnetPacket(buffer+14, data_size-14, logTelnet);//Printing telnet part of Payload
 							}
 						}
+			///////////////////end : Lim ///////////////////
 			            break;
 			         
 					case 17: //UDP Protocol
@@ -519,6 +524,22 @@ void PrintHttpPacket(unsigned char* buffer, int size, FILE *logfile){
 
 }
 
+void PrintTelnetPacket(unsigned char* data, int size, FILE *logfile)
+{
+	struct iphdr *iph=(struct iphdr*)(data); // creating ip header struct
+	unsigned short iphdrlen=iph->ihl*4;	// length of ip in payload
+	struct tcphdr *tcph=(struct tcphdr*)(data+iphdrlen); // creating  tcp header from tcp part of payload
+	fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source)); //printing source port num
+	printf("   |-Source Port      : %u\n",ntohs(tcph->source)); 
+	fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest)); //printing dest port num
+	printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+	
+        printf("Telnet Format Payload\n");
+	fprintf(logfile,"Telnet Format Payload\n");
+        PrintData(data + iphdrlen + tcph->doff*4, (size - tcph->doff*4-iph->ihl*4), logfile ); //printing Telnet part in Payload.
+        printf("---------------------\n"); 
+        fprintf(logfile,"---------------------\n");
+}
 //Data function
 void PrintData (unsigned char* data , int size, FILE *logfile)
 {
@@ -529,7 +550,7 @@ void PrintData (unsigned char* data , int size, FILE *logfile)
     {
         if( i!=0 && i%16==0)   //if one line of hex printing is complete...
         {
-            fprintf(logfile,"         ");
+            fprintf(logfile,"      iph->ihl*4iph->ihl*4   ");
             printf("         ");
             for(j=i-16 ; j<i ; j++)
             {

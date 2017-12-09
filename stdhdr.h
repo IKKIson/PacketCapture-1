@@ -54,6 +54,7 @@ void PrintFtpData(unsigned char*, int, FILE *); //ftp data print
 ///////////// end : Jang /////////////
 
 void PrintHttpPacket(unsigned char*, int, FILE *);
+void PrintTelnetPacket(unsigned char*,int, FILE *);
 
 void PrintHelp();//도움말출력 함수
 void PrintMain();//메인문 출력
