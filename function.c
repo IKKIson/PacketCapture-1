@@ -125,11 +125,13 @@ int PrintCaptureForm(int flag){
 							if(ntohs(udph->dest) == 53 || ntohs(udph->source) == 53){
 								++dns;
 		                                                ++udp;
-								PrintUdpPacket(buffer , data_size, logDns);
-
-
-
-
+								printf("DNS Capture Start!!\n");	
+								PrintIpHeader(buffer,data_size, logDns);	
+								printf("\n");	
+							 	fprintf(logDns,"\n"); 	
+								PrintUdpPacket(buffer+14 , data_size-14, logDns);
+								printf("dns : %d\n",dns);	
+								fprintf(logDns,"dns : %d\n",dns);
 							}
 						}
 			            break;
@@ -388,8 +390,8 @@ void PrintUdpPacket(unsigned char *buffer , int size, FILE *logfile)
 
     PrintData(buffer + iphdrlen + sizeof udph ,( size - sizeof udph - iph->ihl * 4 ), logfile);
      
-    fprintf(logfile,"\n###########################################################");
-    printf("\n###########################################################");
+    fprintf(logfile,"\n###########################################################\n");
+    printf("\n###########################################################\n");
 }
 
 //////////////// Dev : Jang ////////////////
@@ -521,6 +523,28 @@ void PrintHttpPacket(unsigned char* buffer, int size, FILE *logfile){
         printf("---------------------\n");
         fprintf(logfile,"---------------------\n");
 	
+
+}
+
+void PrintDnsPacket(unsigned char* Buffer, int size, FILE *logfile){
+	unsigned short iphdrlen;
+	struct iphdr *iph = (struct iphdr *)Buffer;
+	iphdrlen = iph->ihl*4;
+	struct udphdr *udph = (struct udphdr*)(Buffer + iphdrlen);
+	
+        fprintf(logfile,"   |-Source Port      : %u\n",ntohs(udph->source));
+        printf("   |-Source Port      : %u\n",ntohs(udph->source));
+
+        fprintf(logfile,"   |-Destination Port : %u\n",ntohs(udph->dest));
+        printf("   |-Destination Port : %u\n",ntohs(udph->dest));
+
+        printf("UDP Format Payload\n");
+        fprintf(logfile,"UDP Format Payload\n");
+	
+	PrintData(Buffer + iphdrlen + sizeof udph, ( size - sizeof udph - iph->ihl*4),logfile);
+
+        printf("---------------------\n");
+        fprintf(logfile,"---------------------\n");
 
 }
 
