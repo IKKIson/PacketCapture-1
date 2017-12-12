@@ -51,16 +51,16 @@ int PrintCaptureForm(int flag){
 	printf("-Start-   ");
 	switch(flag){
 		case FORM_FTP:
-			printf("Ftp Capture start");
+			printf("\nFtp Capture start	");
 			break;
 		case FORM_HTTP:
-			printf("HTTP Capture start");
+			printf("\nHTTP Capture start	");
 			break;
 		case FORM_TELNET:
-			printf("TELNET Capture start");
+			printf("\nTELNET Capture start	");
 			break;
 		case FORM_DNS:
-			printf("DNS Capture start");
+			printf("\nDNS Capture start	");
 			break;
 	}
 	printf("back : 'q'\n");
@@ -128,10 +128,7 @@ int PrintCaptureForm(int flag){
 							if(ntohs(udph->dest) == 53 || ntohs(udph->source) == 53){
 								++dns;
 		                                                ++udp;
-								PrintIpHeader(buffer,data_size, logDns);	
-								printf("\n");	
-							 	fprintf(logDns,"\n"); 	
-								PrintUdpPacket(buffer+14 , data_size-14, logDns);
+								PrintDnsPacket(buffer+14 , data_size-14, logDns);
 								printf("dns : %d\n",dns);	
 								fprintf(logDns,"dns : %d\n",dns);
 							}
@@ -325,8 +322,8 @@ void PrintTcpPacket(unsigned char* buffer, int size, FILE *logfile)
     printf("\n###########################################################\n");
 }
  
-//Udp function
-void PrintUdpPacket(unsigned char *buffer , int size, FILE *logfile)
+//Dns Packet
+void PrintDnsPacket(unsigned char *buffer , int size, FILE *logfile)
 {
      
     unsigned short iphdrlen;
@@ -336,8 +333,8 @@ void PrintUdpPacket(unsigned char *buffer , int size, FILE *logfile)
      
     struct udphdr *udph = (struct udphdr*)(buffer + iphdrlen);
      
-    fprintf(logfile,"\n\n***********************UDP Packet*************************\n");
-    printf("\n\n***********************UDP Packet*************************\n");
+    fprintf(logfile,"\n\n***********************UDP Packet[DNS]*************************\n");
+    printf("\n\n***********************UDP Packet[DNS]*************************\n");
      
     PrintIpHeader(buffer,size, logfile);           
      
@@ -359,16 +356,6 @@ void PrintUdpPacket(unsigned char *buffer , int size, FILE *logfile)
     fprintf(logfile,"\n");
     printf("\n");
 
-    fprintf(logfile,"IP Header\n");
-    printf("IP Header\n");
-
-    PrintData(buffer , iphdrlen, logfile);
-         
-    fprintf(logfile,"UDP Header\n");
-    printf("UDP Header\n");
-
-    PrintData(buffer+iphdrlen , sizeof udph, logfile);
-         
     fprintf(logfile,"Data Payload\n");  
     printf("Data Payload\n");  
 
@@ -488,27 +475,6 @@ void PrintHttpPacket(unsigned char* buffer, int size, FILE *logfile){
 
 }
 
-void PrintDnsPacket(unsigned char* Buffer, int size, FILE *logfile){
-	unsigned short iphdrlen;
-	struct iphdr *iph = (struct iphdr *)Buffer;
-	iphdrlen = iph->ihl*4;
-	struct udphdr *udph = (struct udphdr*)(Buffer + iphdrlen);
-	
-        fprintf(logfile,"   |  Source Port      : %u\n",ntohs(udph->source));
-        printf("   |  Source Port      : %u\n",ntohs(udph->source));
-
-        fprintf(logfile,"   |  Destination Port : %u\n",ntohs(udph->dest));
-        printf("   |  Destination Port : %u\n",ntohs(udph->dest));
-
-        printf("UDP Format Payload\n");
-        fprintf(logfile,"UDP Format Payload\n");
-	
-	PrintData(Buffer + iphdrlen + sizeof udph, ( size - sizeof udph - iph->ihl*4),logfile);
-
-        printf("---------------------\n");
-        fprintf(logfile,"---------------------\n");
-
-}
 
 void PrintTelnetPacket(unsigned char* data, int size, FILE *logfile)
 {

@@ -44,8 +44,6 @@ void PrintIpHeader(unsigned char* , int, FILE *);
 
 void PrintTcpPacket(unsigned char* , int, FILE *);
 
-void PrintUdpPacket(unsigned char * , int, FILE *);
-
 void PrintData (unsigned char* , int, FILE *);
 
 ////////////// dev : Jang ////////////
