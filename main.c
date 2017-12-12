@@ -46,10 +46,6 @@ int main(void)
 					printf("PrintCaptureForm() DNS form flag error\n");
 				}
 				break;
-
-			case '?': //도움말
-				PrintHelp();
-				break;
 			default : //다른 키 눌렀을 시 skip
 				break;
 		}		

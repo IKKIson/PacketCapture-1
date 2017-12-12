@@ -39,26 +39,31 @@ int PrintCaptureForm(int flag){
 		printf("Raw Socket Error\n");
 		return FORM_ERROR;
 	}
-	//} else if(flag == FORM_DNS){ //if udp protocol
-	//	sock_raw_udp = socket(AF_INET, SOCK_RAW , IPPROTO_UDP);
-	//	if(sock_raw_udp < 0){
-	//		printf("UDP Socket Error\n");
-	//		return FORM_ERROR;
-	//	}
-	//} else {
-	//	printf("PrintCaptureFrom() flag error\n");
-	//	return FORM_ERROR;
-	//}
 
 	//Promisc Mode for Raw socket Capture in dateLink Layer
 	// 네트워크 디바이스를 promiscous 모드로 변경
-        if(!SetPromiscMode(sock_raw)){
-                printf("set promiscous mode error\n");
+    if(!SetPromiscMode(sock_raw)){
+		printf("set promiscous mode error\n");
 		return FORM_ERROR;
 	}
-	
 
-	printf("staring... if you don't want to packet capture anymore then you have to press key 'q' and enter \n");
+	//starting message
+	printf("-Start-   ");
+	switch(flag){
+		case FORM_FTP:
+			printf("Ftp Capture start");
+			break;
+		case FORM_HTTP:
+			printf("HTTP Capture start");
+			break;
+		case FORM_TELNET:
+			printf("TELNET Capture start");
+			break;
+		case FORM_DNS:
+			printf("DNS Capture start");
+			break;
+	}
+	printf("back : 'q'\n");
 
 	switch(pid = fork()){
 		case -1://error
@@ -72,8 +77,8 @@ int PrintCaptureForm(int flag){
 			    	//Receive a packet
 				data_size = recvfrom(sock_raw, buffer , MAX_BUFFER_SIZE , 0 , &saddr , &saddr_size);
 				if(data_size < 0 ){ //occure recvfrom error
-			        	printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
-				        return FORM_ERROR;
+			       	printf("PrintCaptureForm() Recvfrom error , failed to get packets\n");
+				    return FORM_ERROR;
 				}
 				
 				switch (iph->protocol){ //Check the Protocol and do accordingly...
@@ -81,36 +86,34 @@ int PrintCaptureForm(int flag){
 						++tcp;
 						if(flag == FORM_FTP){
 			///////////////////dev : Jang /////////////////////
-							if(ntohs(tcph->dest) == 20 || ntohs(tcph->source) == 20 || ntohs(tcph->dest) == 21 || ntohs(tcph->source) == 21){	
-								++ftp;
-								PrintIpHeader(buffer,data_size,logFtp);
-								printf("\n");
-								fprintf(logFtp,"\n");
-								PrintFtpPacket(buffer+14,data_size+14, logFtp);
-							
+//							if(ntohs(tcph->dest) == 20 || ntohs(tcph->source) == 20 || ntohs(tcph->dest) == 21 || ntohs(tcph->source) == 21){	
+							++ftp;
+							PrintIpHeader(buffer,data_size,logFtp);
+							printf("\n");
+							fprintf(logFtp,"\n");
+							PrintFtpPacket(buffer+14,data_size+14, logFtp);
+						
 			///////////////////end : Jang ////////////////////
-								printf("ftp : %d\n",ftp);
-								fprintf(logFtp,"ftp : %d\n",ftp);
-							}
+							printf("ftp : %d\n",ftp);
+							fprintf(logFtp,"ftp : %d\n",ftp);
+//							}
 						} else if(flag == FORM_HTTP){
                         ///////////////////dev : Son /////////////////////
 							 if(ntohs(tcph->dest) == 80 || ntohs(tcph->source) == 80){
 								http++;
-								printf("HTTP Capture Start!!\n");
 								PrintIpHeader(buffer,data_size,logFtp);
-	                                                        printf("\n");
-	                                                        fprintf(logHttp,"\n");
-	                                                        PrintHttpPacket(buffer+14, data_size-14, logHttp);
-	                                                        printf("http : %d\n",http);
-	                                                        fprintf(logFtp,"http : %d\n",http);
-				                        }
+	                            printf("\n");
+	                            fprintf(logHttp,"\n");
+	                            PrintHttpPacket(buffer+14, data_size-14, logHttp);
+	                            printf("http : %d\n",http);
+	                            fprintf(logFtp,"http : %d\n",http);
+				             }
                         ///////////////////end : Son ////////////////////
 						} else if(flag == FORM_TELNET){
 							if(ntohs(tcph->dest) == 23 || ntohs(tcph->source) == 23){
 								++telnet;
 								printf("telnet : %d\n",telnet);//Printing Packet Number on cmd
 								fprintf(logTelnet, "telnet : %d\n",telnet);//Printing Packet Number on File
-								printf("Capturing telnet packet!!\n");//Printing sentence
 								PrintIpHeader(buffer,data_size,logTelnet); // Printing Ip Header on cmd and File
 								printf("\n"); 
 								fprintf(logTelnet,"\n"); 
@@ -125,7 +128,6 @@ int PrintCaptureForm(int flag){
 							if(ntohs(udph->dest) == 53 || ntohs(udph->source) == 53){
 								++dns;
 		                                                ++udp;
-								printf("DNS Capture Start!!\n");	
 								PrintIpHeader(buffer,data_size, logDns);	
 								printf("\n");	
 							 	fprintf(logDns,"\n"); 	
@@ -202,44 +204,35 @@ void PrintIpHeader(unsigned char* buffer, int size, FILE *logfile){
     printf("IP Header\n");
     fprintf(logfile,"IP Header\n");
 
-    printf("   |-IP Version        : %d\n",(unsigned int)iph->version);
-    fprintf(logfile,"   |-IP Version        : %d\n",(unsigned int)iph->version);
+    printf("   |  IP Version        : %d\n",(unsigned int)iph->version);
+    fprintf(logfile,"   |  IP Version        : %d\n",(unsigned int)iph->version);
 
-    printf("   |-IP Header Length  : %d DWORDS or %d Bytes\n",(unsigned int)iph->ihl,((unsigned int)(iph->ihl))*4);
-    fprintf(logfile,"   |-IP Header Length  : %d DWORDS or %d Bytes\n",(unsigned int)iph->ihl,((unsigned int)(iph->ihl))*4);
+    printf("   |  IP Header Length  : %d DWORDS or %d Bytes\n",(unsigned int)iph->ihl,((unsigned int)(iph->ihl))*4);
+    fprintf(logfile,"   |  IP Header Length  : %d DWORDS or %d Bytes\n",(unsigned int)iph->ihl,((unsigned int)(iph->ihl))*4);
 
-    printf("   |-Type Of Service   : %d\n",(unsigned int)iph->tos);
-    fprintf(logfile,"   |-Type Of Service   : %d\n",(unsigned int)iph->tos);
+    printf("   |  Type Of Service   : %d\n",(unsigned int)iph->tos);
+    fprintf(logfile,"   |  Type Of Service   : %d\n",(unsigned int)iph->tos);
 
-    printf("   |-IP Total Length   : %d  Bytes(size of Packet)\n",ntohs(iph->tot_len));
-    fprintf(logfile,"   |-IP Total Length   : %d  Bytes(size of Packet)\n",ntohs(iph->tot_len));
+    printf("   |  IP Total Length   : %d  Bytes(size of Packet)\n",ntohs(iph->tot_len));
+    fprintf(logfile,"   |  IP Total Length   : %d  Bytes(size of Packet)\n",ntohs(iph->tot_len));
 
-    printf("   |-Identification    : %d\n",ntohs(iph->id));
-    fprintf(logfile,"   |-Identification    : %d\n",ntohs(iph->id));
+    printf("   |  Identification    : %d\n",ntohs(iph->id));
+    fprintf(logfile,"   |  Identification    : %d\n",ntohs(iph->id));
 
-    //printf("   |-Reserved ZERO Field   : %d\n",(unsigned int)iphdr->ip_reserved_zero);
-    //fprintf(logfile,"   |-Reserved ZERO Field   : %d\n",(unsigned int)iphdr->ip_reserved_zero);
+    printf("   |  TTL      : %d\n",(unsigned int)iph->ttl);
+    fprintf(logfile,"   |  TTL      : %d\n",(unsigned int)iph->ttl);
 
-    //printf("   |-Dont Fragment Field   : %d\n",(unsigned int)iphdr->ip_dont_fragment);
-    //fprintf(logfile,"   |-Dont Fragment Field   : %d\n",(unsigned int)iphdr->ip_dont_fragment);
+    printf("   |  Protocol : %d\n",(unsigned int)iph->protocol);
+    fprintf(logfile,"   |  Protocol : %d\n",(unsigned int)iph->protocol);
 
-    //printf("   |-More Fragment Field   : %d\n",(unsigned int)iphdr->ip_more_fragment);
-    //fprintf(logfile,"   |-More Fragment Field   : %d\n",(unsigned int)iphdr->ip_more_fragment);
+    printf("   |  Checksum : %d\n",ntohs(iph->check));
+    fprintf(logfile,"   |  Checksum : %d\n",ntohs(iph->check));
 
-    printf("   |-TTL      : %d\n",(unsigned int)iph->ttl);
-    fprintf(logfile,"   |-TTL      : %d\n",(unsigned int)iph->ttl);
+    printf("   |  Source IP        : %s\n",inet_ntoa(source.sin_addr));
+    fprintf(logfile,"   |  Source IP        : %s\n",inet_ntoa(source.sin_addr));
 
-    printf("   |-Protocol : %d\n",(unsigned int)iph->protocol);
-    fprintf(logfile,"   |-Protocol : %d\n",(unsigned int)iph->protocol);
-
-    printf("   |-Checksum : %d\n",ntohs(iph->check));
-    fprintf(logfile,"   |-Checksum : %d\n",ntohs(iph->check));
-
-    printf("   |-Source IP        : %s\n",inet_ntoa(source.sin_addr));
-    fprintf(logfile,"   |-Source IP        : %s\n",inet_ntoa(source.sin_addr));
-
-    printf("   |-Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
-    fprintf(logfile,"   |-Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
+    printf("   |  Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
+    fprintf(logfile,"   |  Destination IP   : %s\n",inet_ntoa(dest.sin_addr));
 
 }
 
@@ -265,53 +258,47 @@ void PrintTcpPacket(unsigned char* buffer, int size, FILE *logfile)
     fprintf(logfile,"TCP Header\n");
     printf("TCP Header\n");
 
-    fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source));
-    printf("   |-Source Port      : %u\n",ntohs(tcph->source));
+    fprintf(logfile,"   |  Source Port      : %u\n",ntohs(tcph->source));
+    printf("   |  Source Port      : %u\n",ntohs(tcph->source));
 
-    fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest));
-    printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+    fprintf(logfile,"   |  Destination Port : %u\n",ntohs(tcph->dest));
+    printf("   |  Destination Port : %u\n",ntohs(tcph->dest));
 
-    fprintf(logfile,"   |-Sequence Number    : %u\n",ntohl(tcph->seq));
-    printf("   |-Sequence Number    : %u\n",ntohl(tcph->seq));
+    fprintf(logfile,"   |  Sequence Number    : %u\n",ntohl(tcph->seq));
+    printf("   |  Sequence Number    : %u\n",ntohl(tcph->seq));
 
-    fprintf(logfile,"   |-Acknowledge Number : %u\n",ntohl(tcph->ack_seq));
-    printf("   |-Acknowledge Number : %u\n",ntohl(tcph->ack_seq));
+    fprintf(logfile,"   |  ucknowledge Number : %u\n",ntohl(tcph->ack_seq));
+    printf("   |  Acknowledge Number : %u\n",ntohl(tcph->ack_seq));
 
-    fprintf(logfile,"   |-Header Length      : %d DWORDS or %d BYTES\n" ,(unsigned int)tcph->doff,(unsigned int)tcph->doff*4);
-    printf("   |-Header Length      : %d DWORDS or %d BYTES\n" ,(unsigned int)tcph->doff,(unsigned int)tcph->doff*4);
+    fprintf(logfile,"   |  Header Length      : %d DWORDS or %d BYTES\n" ,(unsigned int)tcph->doff,(unsigned int)tcph->doff*4);
+    printf("   |  Header Length      : %d DWORDS or %d BYTES\n" ,(unsigned int)tcph->doff,(unsigned int)tcph->doff*4);
 
-    //fprintf(logfile,"   |-CWR Flag : %d\n",(unsigned int)tcph->cwr);
-    //printf("   |-CWR Flag : %d\n",(unsigned int)tcph->cwr);
+    fprintf(logfile,"   |  Urgent Flag          : %d\n",(unsigned int)tcph->urg);
+    printf("   |  Urgent Flag          : %d\n",(unsigned int)tcph->urg);
 
-    //fprintf(logfile,"   |-ECN Flag : %d\n",(unsigned int)tcph->ece);
-    //printf("   |-ECN Flag : %d\n",(unsigned int)tcph->ece);
+    fprintf(logfile,"   |  Acknowledgement Flag : %d\n",(unsigned int)tcph->ack);
+    printf("   |  Acknowledgement Flag : %d\n",(unsigned int)tcph->ack);
 
-    fprintf(logfile,"   |-Urgent Flag          : %d\n",(unsigned int)tcph->urg);
-    printf("   |-Urgent Flag          : %d\n",(unsigned int)tcph->urg);
+    fprintf(logfile,"   |  Push Flag            : %d\n",(unsigned int)tcph->psh);
+    printf("   |  Push Flag            : %d\n",(unsigned int)tcph->psh);
 
-    fprintf(logfile,"   |-Acknowledgement Flag : %d\n",(unsigned int)tcph->ack);
-    printf("   |-Acknowledgement Flag : %d\n",(unsigned int)tcph->ack);
+    fprintf(logfile,"   |  Reset Flag           : %d\n",(unsigned int)tcph->rst);
+    printf("   |  Reset Flag           : %d\n",(unsigned int)tcph->rst);
 
-    fprintf(logfile,"   |-Push Flag            : %d\n",(unsigned int)tcph->psh);
-    printf("   |-Push Flag            : %d\n",(unsigned int)tcph->psh);
+    fprintf(logfile,"   |  Synchronise Flag     : %d\n",(unsigned int)tcph->syn);
+    printf("   |  Synchronise Flag     : %d\n",(unsigned int)tcph->syn);
 
-    fprintf(logfile,"   |-Reset Flag           : %d\n",(unsigned int)tcph->rst);
-    printf("   |-Reset Flag           : %d\n",(unsigned int)tcph->rst);
+    fprintf(logfile,"   |  Finish Flag          : %d\n",(unsigned int)tcph->fin);
+    printf("   |  Finish Flag          : %d\n",(unsigned int)tcph->fin);
 
-    fprintf(logfile,"   |-Synchronise Flag     : %d\n",(unsigned int)tcph->syn);
-    printf("   |-Synchronise Flag     : %d\n",(unsigned int)tcph->syn);
+    fprintf(logfile,"   |  Window         : %d\n",ntohs(tcph->window));
+    printf("   |  Window         : %d\n",ntohs(tcph->window));
 
-    fprintf(logfile,"   |-Finish Flag          : %d\n",(unsigned int)tcph->fin);
-    printf("   |-Finish Flag          : %d\n",(unsigned int)tcph->fin);
+    fprintf(logfile,"   |  Checksum       : %d\n",ntohs(tcph->check));
+    printf("   |  Checksum       : %d\n",ntohs(tcph->check));
 
-    fprintf(logfile,"   |-Window         : %d\n",ntohs(tcph->window));
-    printf("   |-Window         : %d\n",ntohs(tcph->window));
-
-    fprintf(logfile,"   |-Checksum       : %d\n",ntohs(tcph->check));
-    printf("   |-Checksum       : %d\n",ntohs(tcph->check));
-
-    fprintf(logfile,"   |-Urgent Pointer : %d\n",tcph->urg_ptr);
-    printf("   |-Urgent Pointer : %d\n",tcph->urg_ptr);
+    fprintf(logfile,"   |  Urgent Pointer : %d\n",tcph->urg_ptr);
+    printf("   |  Urgent Pointer : %d\n",tcph->urg_ptr);
 
     fprintf(logfile,"\n");
     printf("\n");
@@ -331,9 +318,6 @@ void PrintTcpPacket(unsigned char* buffer, int size, FILE *logfile)
     printf("TCP Header\n");
 
     PrintData(buffer+iphdrlen,tcph->doff*4, logfile);
-         
-    fprintf(logfile,"I WANNA Data Payload\n");  
-    printf("I WANNA Data Payload\n");  
 
     PrintData(buffer + iphdrlen + tcph->doff*4 , (size - tcph->doff*4-iph->ihl*4), logfile);
                          
@@ -360,17 +344,17 @@ void PrintUdpPacket(unsigned char *buffer , int size, FILE *logfile)
     fprintf(logfile,"\nUDP Header\n");
     printf("\nUDP Header\n");
 
-    fprintf(logfile,"   |-Source Port      : %d\n" , ntohs(udph->source));
-    printf("   |-Source Port      : %d\n" , ntohs(udph->source));
+    fprintf(logfile,"   |  Source Port      : %d\n" , ntohs(udph->source));
+    printf("   |  Source Port      : %d\n" , ntohs(udph->source));
 
-    fprintf(logfile,"   |-Destination Port : %d\n" , ntohs(udph->dest));
-    printf("   |-Destination Port : %d\n" , ntohs(udph->dest));
+    fprintf(logfile,"   |  Destination Port : %d\n" , ntohs(udph->dest));
+    printf("   |  Destination Port : %d\n" , ntohs(udph->dest));
 
-    fprintf(logfile,"   |-UDP Length       : %d\n" , ntohs(udph->len));
-    printf("   |-UDP Length       : %d\n" , ntohs(udph->len));
+    fprintf(logfile,"   |  UDP Length       : %d\n" , ntohs(udph->len));
+    printf("   |  UDP Length       : %d\n" , ntohs(udph->len));
 
-    fprintf(logfile,"   |-UDP Checksum     : %d\n" , ntohs(udph->check));
-    printf("   |-UDP Checksum     : %d\n" , ntohs(udph->check));
+    fprintf(logfile,"   |  UDP Checksum     : %d\n" , ntohs(udph->check));
+    printf("   |  UDP Checksum     : %d\n" , ntohs(udph->check));
      
     fprintf(logfile,"\n");
     printf("\n");
@@ -407,11 +391,11 @@ void PrintFtpPacket(unsigned char*buffer, int size, FILE *logfile){
 
 	struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
 
-    fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source));
-    printf("   |-Source Port      : %u\n",ntohs(tcph->source));
+    fprintf(logfile,"   |  Source Port      : %u\n",ntohs(tcph->source));
+    printf("   |  Source Port      : %u\n",ntohs(tcph->source));
 
-    fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest));
-    printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+    fprintf(logfile,"   |  Destination Port : %u\n",ntohs(tcph->dest));
+    printf("   |  Destination Port : %u\n",ntohs(tcph->dest));
 
 	//Data Payload//
 	printf("FTP Data Payload\n");
@@ -433,8 +417,6 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
     {
         if( i!=0 && i%16==0)   //if one line of hex printing is complete...
         {
-//            fprintf(logfile,"         ");
-//            printf("         ");
             for(j=i-16 ; j<i ; j++)
             {
                 if(data[j]>=32 && data[j]<=128){
@@ -445,8 +427,6 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
 
                  
                 else {
-//					fprintf(logfile,"."); //otherwise print a dot
-//					printf("."); //otherwise print a dot
 				}
             }
 			if(flag == 1) {
@@ -454,14 +434,7 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
 				fprintf(logfile,"\n");
 				flag = 0;
 			}
-//            fprintf(logfile,"\n");
-//            printf("\n");
         } 
-         
-        if(i%16==0) {
-//			fprintf(logfile,"   ");
-//			printf("   ");
-		}
 		//edd
 		if((unsigned int)data[i] != 0){
 	        fprintf(logfile," %02X",(unsigned int)data[i]);
@@ -470,13 +443,6 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
                  
         if( i==size-1)  //print the last spaces
         {
-            for(j=0;j<15-i%16;j++) {
-//				fprintf(logfile,"   "); //extra spaces
-//				printf("   "); //extra spaces
-			}
-             
-//            fprintf(logfile,"         ");
-//            printf("         ");
              
             for(j=i-i%16 ; j<=i ; j++)
             {
@@ -484,10 +450,6 @@ void PrintFtpData(unsigned char* data, int size, FILE *logfile){
 					fprintf(logfile,"%c",(unsigned char)data[j]);
 					printf("%c",(unsigned char)data[j]);
 					printf("\n");
-				}
-                else {
-//					fprintf(logfile,".");
-//					printf(".");
 				}
             }
             fprintf(logfile,"\n");
@@ -507,11 +469,11 @@ void PrintHttpPacket(unsigned char* buffer, int size, FILE *logfile){
 
         struct tcphdr *tcph=(struct tcphdr*)(buffer + iphdrlen);
 
-	fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source));
-	printf("   |-Source Port      : %u\n",ntohs(tcph->source));
+	fprintf(logfile,"   |  Source Port      : %u\n",ntohs(tcph->source));
+	printf("   |  Source Port      : %u\n",ntohs(tcph->source));
 
-	fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest));
-	printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+	fprintf(logfile,"   |  Destination Port : %u\n",ntohs(tcph->dest));
+	printf("   |  Destination Port : %u\n",ntohs(tcph->dest));
 
         //Data Payload//
         printf("HTTP Format Payload\n");
@@ -532,11 +494,11 @@ void PrintDnsPacket(unsigned char* Buffer, int size, FILE *logfile){
 	iphdrlen = iph->ihl*4;
 	struct udphdr *udph = (struct udphdr*)(Buffer + iphdrlen);
 	
-        fprintf(logfile,"   |-Source Port      : %u\n",ntohs(udph->source));
-        printf("   |-Source Port      : %u\n",ntohs(udph->source));
+        fprintf(logfile,"   |  Source Port      : %u\n",ntohs(udph->source));
+        printf("   |  Source Port      : %u\n",ntohs(udph->source));
 
-        fprintf(logfile,"   |-Destination Port : %u\n",ntohs(udph->dest));
-        printf("   |-Destination Port : %u\n",ntohs(udph->dest));
+        fprintf(logfile,"   |  Destination Port : %u\n",ntohs(udph->dest));
+        printf("   |  Destination Port : %u\n",ntohs(udph->dest));
 
         printf("UDP Format Payload\n");
         fprintf(logfile,"UDP Format Payload\n");
@@ -553,10 +515,10 @@ void PrintTelnetPacket(unsigned char* data, int size, FILE *logfile)
 	struct iphdr *iph=(struct iphdr*)(data); // creating ip header struct
 	unsigned short iphdrlen=iph->ihl*4;	// length of ip in payload
 	struct tcphdr *tcph=(struct tcphdr*)(data+iphdrlen); // creating  tcp header from tcp part of payload
-	fprintf(logfile,"   |-Source Port      : %u\n",ntohs(tcph->source)); //printing source port num
-	printf("   |-Source Port      : %u\n",ntohs(tcph->source)); 
-	fprintf(logfile,"   |-Destination Port : %u\n",ntohs(tcph->dest)); //printing dest port num
-	printf("   |-Destination Port : %u\n",ntohs(tcph->dest));
+	fprintf(logfile,"   |  Source Port      : %u\n",ntohs(tcph->source)); //printing source port num
+	printf("   |  Source Port      : %u\n",ntohs(tcph->source)); 
+	fprintf(logfile,"   |  Destination Port : %u\n",ntohs(tcph->dest)); //printing dest port num
+	printf("   |  Destination Port : %u\n",ntohs(tcph->dest));
 	
         printf("Telnet Format Payload\n");
 	fprintf(logfile,"Telnet Format Payload\n");
@@ -568,8 +530,6 @@ void PrintTelnetPacket(unsigned char* data, int size, FILE *logfile)
 void PrintData (unsigned char* data , int size, FILE *logfile)
 {
      
-	fprintf(logfile,"PrintData() start \n");
-	printf("PrintData() start \n");
     for(i=0 ; i < size ; i++)
     {
         if( i!=0 && i%16==0)   //if one line of hex printing is complete...
@@ -678,7 +638,6 @@ void PrintMain(){
 	printf("h : HTTP capture\n");
 	printf("t : TELNET capture\n");
 	printf("d : DNS capture\n");
-	printf("? : help\n");
 	printf("------------------------\n");
 	printf("option : ");
 
