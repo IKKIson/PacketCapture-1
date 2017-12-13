@@ -1,0 +1,1756 @@
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 30109
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 27367
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57086
+   |  Destination Port : 21
+FTP Data Payload
+
+---------------------
+ftp : 1
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 30110
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 27366
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57086
+   |  Destination Port : 21
+FTP Data Payload
+
+---------------------
+ftp : 2
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 30111
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 27365
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57086
+   |  Destination Port : 21
+FTP Data Payload
+ 35 35 2E 32 35 35 2E 32 35 30 3A 31 39 30 30 0D55.255.250:1900
+ 0A 4D 41 4E 3A 20 22 73 73 64 70 3AMAN: "ssdp:
+---------------------
+ftp : 3
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 30112
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 27364
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57086
+   |  Destination Port : 21
+FTP Data Payload
+ 35 35 2E 32 35 35 2E 32 35 30 3A 31 39 30 30 0D55.255.250:1900
+ 0A 4D 41 4E 3A 20 22 73 73 64 70 3AMAN: "ssdp:
+---------------------
+ftp : 4
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 40995
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 16501
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57086
+FTP Data Payload
+ 08 0A E8 C6 87 74t
+ 01 03 03 07 35 35 2E 32 35 35 2E 32 35 30 3A 3155.255.250:1
+ 39 3090
+---------------------
+ftp : 5
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 37998
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19478
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 92 D1 61 A7 AE 86 A0 63 0E F7 FD CA CC EA 4A B9acJ
+ AD 3B 8F 44 DD C0 A7 4B E1 D9 E3 21;DK!
+---------------------
+ftp : 6
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 44  Bytes(size of Packet)
+   |  Identification    : 41654
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15838
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 08 0A E8 C7 32 7B 01 03 03 072{
+ 92 D1 61 A7 AE 86 A0 63 0E F7 FD CA CC EAac
+---------------------
+ftp : 7
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 37999
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19497
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 02 04 05 B4 08 0A E8 C7 32 7B2{
+ 01 03 03 07 92 D1 61 A7 AE 86 A0 63ac
+---------------------
+ftp : 8
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 61  Bytes(size of Packet)
+   |  Identification    : 41655
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15820
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A D1 61 A7 AE 86 A0 63 0E F7 FD CA yoac
+ CC EA 4A B9 AD 3B 8F 44 DD C0 A7 4B E1 D9 E3 21J;DK!
+ 1C
+---------------------
+ftp : 9
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38000
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19480
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A D1 61 A7 AE 86 A0 63 yoac
+---------------------
+ftp : 10
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 50  Bytes(size of Packet)
+   |  Identification    : 38001
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19469
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 55 53 45 52 20 6A 6A 1B 0D 0A B5 06 BF EC 43 61USER jjCa
+ 6F CB 0D C0 09 4D 3C B9 6E 43 51 55 4A D5 20 B6oM<nCQUJ 
+ 5D 19 85 9F 82 5C]\
+---------------------
+ftp : 11
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41670
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15826
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 6A 1B 0D 0A B5 06 BF EC 43 61jCa
+ 6F CB 0D C0 09 4D 3C B9 6E 43 51 55 4A D5 20 B6oM<nCQUJ 
+ 5D 19]
+---------------------
+ftp : 12
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 74  Bytes(size of Packet)
+   |  Identification    : 41671
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15791
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77 6F 72 64 2Efy the password.
+ 0D 0A 85 9F 82 5C DC 08 CD 70 11 A0 8B 38 E3 21\p8!
+ 1C F6 9E D5 C1 2A DB ED 68 AF 78 09 34 A0*hx4
+---------------------
+ftp : 13
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38002
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19478
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77fy the passw
+---------------------
+ftp : 14
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 48  Bytes(size of Packet)
+   |  Identification    : 38003
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19469
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 50 41 53 53 20 73 0D 0A 73 65 20 73 70 65 63 69PASS sse speci
+ 66 79 20 74 68 65 20 70 61 73 73 77 6F 72 64 2Efy the password.
+ 0D 0A 85 9F
+---------------------
+ftp : 15
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41672
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15824
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 0D 0A 73 65 20 73 70 65 63 69se speci
+ 66 79 20 74 68 65 20 70 61 73 73 77 6F 72 64 2Efy the password.
+ 0D 0A
+---------------------
+ftp : 16
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 62  Bytes(size of Packet)
+   |  Identification    : 41673
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15801
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 4C 6F 67 69 6E 20 69 6E 63 6F 72 72530 Login incorr
+ 65 63 74 2E 0D 0A 20 70 61 73 73 77 6F 72 64 2Eect. password.
+ 0D 0A 85 9F 82 5C DC 08 CD 70 11 A0 8B 38 E3 21\p8!
+ 1C F6
+---------------------
+ftp : 17
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38004
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19476
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 4C 6F 67 69 6E 20 69 6E 63 6F 72 72530 Login incorr
+ 65 63 74 2E 0D 0A 20 70 61 73 73 77ect. passw
+---------------------
+ftp : 18
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 46  Bytes(size of Packet)
+   |  Identification    : 38005
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19469
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 53 59 53 54 0D 0A 67 69 6E 20 69 6E 63 6F 72 72SYSTgin incorr
+ 65 63 74 2E 0D 0A 20 70 61 73 73 77 6F 72 64 2Eect. password.
+ 0D 0A
+---------------------
+ftp : 19
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41674
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15822
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 67 69 6E 20 69 6E 63 6F 72 72gin incorr
+ 65 63 74 2E 0D 0A 20 70 61 73 73 77 6F 72 64 2Eect. password.
+ 0D 0A
+---------------------
+ftp : 20
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 78  Bytes(size of Packet)
+   |  Identification    : 41675
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15783
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A DC 08 CD 70 11 A0 8B 38 E3 21ASS.p8!
+ 1C F6 9E D5 C1 2A DB ED 68 AF 78 09 34 A0 F8 8C*hx4
+ 60 12`
+---------------------
+ftp : 21
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38006
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19474
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 22
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 70  Bytes(size of Packet)
+   |  Identification    : 38007
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19443
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 50 4F 52 54 20 31 39 32 2C 31 36 38 2C 31 31 36PORT 192,168,116
+ 2C 31 33 31 2C 32 33 36 2C 32 33 33 0D 0A 19 01,131,236,233
+ 73 07 70 73 74 61 74 69 63 03 6E 65 74 05 6E 68spstaticnetnh
+ 65 6F 73 03 63 6F 6D C0 2Beoscom+
+---------------------
+ftp : 23
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41682
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15814
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 39 32 2C 31 36 38 2C 31 31 3692,168,116
+ 2C 31 33 31 2C 32 33 36 2C 32 33 33 0D 0A 19 01,131,236,233
+ 73 07s
+---------------------
+ftp : 24
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 78  Bytes(size of Packet)
+   |  Identification    : 41683
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15775
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+ 05
+---------------------
+ftp : 25
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38008
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19472
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 26
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 69  Bytes(size of Packet)
+   |  Identification    : 38009
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19442
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 50 4F 52 54 20 31 39 32 2C 31 36 38 2C 31 31 36PORT 192,168,116
+ 2C 31 33 31 2C 32 32 35 2C 39 33 0D 0A 64 20 50,131,225,93d P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0eoscom
+---------------------
+ftp : 27
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41684
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15812
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 39 32 2C 31 36 38 2C 31 31 3692,168,116
+ 2C 31 33 31 2C 32 32 35 2C 39 33 0D 0A 64 20 50,131,225,93d P
+ 41 53AS
+---------------------
+ftp : 28
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 78  Bytes(size of Packet)
+   |  Identification    : 41685
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15773
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+ 05
+---------------------
+ftp : 29
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38010
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19470
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 30
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 70  Bytes(size of Packet)
+   |  Identification    : 38011
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19439
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 50 4F 52 54 20 31 39 32 2C 31 36 38 2C 31 31 36PORT 192,168,116
+ 2C 31 33 31 2C 31 37 38 2C 31 30 33 0D 0A 20 50,131,178,103 P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2Beoscom+
+---------------------
+ftp : 31
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41687
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15809
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 39 32 2C 31 36 38 2C 31 31 3692,168,116
+ 2C 31 33 31 2C 31 37 38 2C 31 30 33 0D 0A 20 50,131,178,103 P
+ 41 53AS
+---------------------
+ftp : 32
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 78  Bytes(size of Packet)
+   |  Identification    : 41688
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15770
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+ 05
+---------------------
+ftp : 33
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38012
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19468
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 34
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 70  Bytes(size of Packet)
+   |  Identification    : 38013
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19437
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 50 4F 52 54 20 31 39 32 2C 31 36 38 2C 31 31 36PORT 192,168,116
+ 2C 31 33 31 2C 32 31 31 2C 32 31 37 0D 0A 20 50,131,211,217 P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2Beoscom+
+---------------------
+ftp : 35
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41690
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15806
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 39 32 2C 31 36 38 2C 31 31 3692,168,116
+ 2C 31 33 31 2C 32 31 31 2C 32 31 37 0D 0A 20 50,131,211,217 P
+ 41 53AS
+---------------------
+ftp : 36
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 78  Bytes(size of Packet)
+   |  Identification    : 41691
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15767
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+ 05
+---------------------
+ftp : 37
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38014
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19466
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 35 33 30 20 50 6C 65 61 73 65 20 6C 6F 67 69 6E530 Please login
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 38
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 46  Bytes(size of Packet)
+   |  Identification    : 38015
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19459
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 51 55 49 54 0D 0A 65 61 73 65 20 6C 6F 67 69 6EQUITease login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53AS
+---------------------
+ftp : 39
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41692
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15804
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 65 61 73 65 20 6C 6F 67 69 6Eease login
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53AS
+---------------------
+ftp : 40
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 54  Bytes(size of Packet)
+   |  Identification    : 41693
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15789
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 32 32 31 20 47 6F 6F 64 62 79 65 2E 0D 0A 69 6E221 Goodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03ASS.tic
+---------------------
+ftp : 41
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38016
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19464
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 32 32 31 20 47 6F 6F 64 62 79 65 2E 0D 0A 69 6E221 Goodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 42
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38017
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19463
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 32 32 31 20 47 6F 6F 64 62 79 65 2E 0D 0A 69 6E221 Goodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 43
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41694
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15802
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 6F 64 62 79 65 2E 0D 0A 69 6Eodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53AS
+---------------------
+ftp : 44
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 38018
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 19462
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57114
+   |  Destination Port : 21
+FTP Data Payload
+ 6F 64 62 79 65 2E 0D 0A 69 6Eodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 with USER a
+---------------------
+ftp : 45
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41695
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15801
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57114
+FTP Data Payload
+ 6F 64 62 79 65 2E 0D 0A 69 6Eodbye.in
+ 20 77 69 74 68 20 55 53 45 52 20 61 6E 64 20 50 with USER and P
+ 41 53AS
+---------------------
+ftp : 46
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 50749
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6727
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 68 20 55 53 45 52 20 61 6E 64 20 50 41 53 53 2Eh USER and PASS.
+ 0D 0A 74 69 63 03 6E 65 74 05 6E 68ticnetnh
+---------------------
+ftp : 47
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 44  Bytes(size of Packet)
+   |  Identification    : 41698
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15794
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 08 0A E8 C7 60 A5 01 03 03 07`
+ 68 20 55 53 45 52 20 61 6E 64 20 50 41 53h USER and PAS
+---------------------
+ftp : 48
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 50750
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6746
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 02 04 05 B4 08 0A E8 C7 60 A5`
+ 01 03 03 07 68 20 55 53 45 52 20 61h USER a
+---------------------
+ftp : 49
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 61  Bytes(size of Packet)
+   |  Identification    : 41699
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15776
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A 20 55 53 45 52 20 61 6E 64 20 50 yo USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68ASS.ticnetnh
+ 65e
+---------------------
+ftp : 50
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 50751
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6729
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A 20 55 53 45 52 20 61 yo USER a
+---------------------
+ftp : 51
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 55  Bytes(size of Packet)
+   |  Identification    : 50752
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6713
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 55 53 45 52 20 6A 6A 61 6E 67 6D 61 6E 0D 0A 6BUSER jjangmank
+ 20 79 6F 0D 0A 20 55 53 45 52 20 61 6E 64 20 50 yo USER and P
+ 41 53 53 2E 0D 0A 74 69 63 03 6EASS.ticn
+---------------------
+ftp : 52
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41702
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15794
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 6A 61 6E 67 6D 61 6E 0D 0A 6Bjangmank
+ 20 79 6F 0D 0A 20 55 53 45 52 20 61 6E 64 20 50 yo USER and P
+ 41 53AS
+---------------------
+ftp : 53
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 74  Bytes(size of Packet)
+   |  Identification    : 41703
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15759
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77 6F 72 64 2Efy the password.
+ 0D 0A 53 2E 0D 0A 74 69 63 03 6E 65 74 05 6E 68S.ticnetnh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+---------------------
+ftp : 54
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 50753
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6727
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77fy the passw
+---------------------
+ftp : 55
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 58  Bytes(size of Packet)
+   |  Identification    : 50754
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 6708
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57116
+   |  Destination Port : 21
+FTP Data Payload
+ 50 41 53 53 20 77 6B 64 67 75 73 61 75 64 31 21PASS wkdgusaud1!
+ 0D 0A 21 40 13 DF 26 20 AF D9 61 79 63 5A BD CA!@& aycZ
+ BE 01 B5 05 D2 82 22 EB 0C 02 E9 95 76 97"v
+---------------------
+ftp : 56
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41715
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15781
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 6B 64 67 75 73 61 75 64 31 21kdgusaud1!
+ 0D 0A 21 40 13 DF 26 20 AF D9 61 79 63 5A BD CA!@& aycZ
+ BE 01
+---------------------
+ftp : 57
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41724
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15772
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57116
+FTP Data Payload
+ 01 42 E3 76 19 38 2D BF FF FCBv8-
+ 32 DD 75 A3 5C 7D 99 A3 7C F9 6A D8 2F 89 98 8F2u\}|j/
+ 26&
+---------------------
+ftp : 58
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 6191
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 51285
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57118
+   |  Destination Port : 21
+FTP Data Payload
+ 0C 05 01 05 19 01 73 07 70 73sps
+ 74 61 74 69 63 03 6E 65 74 05 6E 68taticnetnh
+---------------------
+ftp : 59
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 6192
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 51284
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57118
+   |  Destination Port : 21
+FTP Data Payload
+ 0C 05 01 05 19 01 73 07 70 73sps
+ 74 61 74 69 63 03 6E 65 74 05 6E 68taticnetnh
+---------------------
+ftp : 60
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 6193
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 51283
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57118
+   |  Destination Port : 21
+FTP Data Payload
+ 0C 05 01 05 19 01 73 07 70 73sps
+ 74 61 74 69 63 03 6E 65 74 05 6E 68taticnetnh
+---------------------
+ftp : 61
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 6194
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 51282
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57118
+   |  Destination Port : 21
+FTP Data Payload
+ 0C 05 01 05 19 01 73 07 70 73sps
+ 74 61 74 69 63 03 6E 65 74 05 6E 68taticnetnh
+---------------------
+ftp : 62
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41750
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15746
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57118
+FTP Data Payload
+ 0B 5D D9 D7]
+ F7 37 53 84 D8 E5 77 E2 73 67 81 84 71 70 9E DD7Swsgqp
+ 0F 3D=
+---------------------
+ftp : 63
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 60  Bytes(size of Packet)
+   |  Identification    : 8292
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49184
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 4E EA F0 21 2E 89 70 58 B0 1A 08 1F 72 50 96 39N!.pXrP9
+ 05 B6 9D D8 55 8E 72 13 DD 23 6E 68Ur#nh
+---------------------
+ftp : 64
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 44  Bytes(size of Packet)
+   |  Identification    : 41756
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15736
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 08 0A E8 C7 B5 FD 01 03 03 07 4E EA F0 21 2E 89 70 58 B0 1A 08 1F 72 50N!.pXrP
+---------------------
+ftp : 65
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8293
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49203
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 02 04 05 B4 08 0A E8 C7 B5 FD 01 03 03 07 4E EA F0 21 2E 89 70 58N!.pX
+---------------------
+ftp : 66
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 61  Bytes(size of Packet)
+   |  Identification    : 41757
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15718
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A EA F0 21 2E 89 70 58 B0 1A 08 1F yo!.pX
+ 72 50 96 39 05 B6 9D D8 55 8E 72 13 DD 23 6E 68rP9Ur#nh
+ 65e
+---------------------
+ftp : 67
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8294
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49186
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 32 32 30 20 57 65 6C 63 6F 6D 65 20 66 75 63 6B220 Welcome fuck
+ 20 79 6F 0D 0A EA F0 21 2E 89 70 58 yo!.pX
+---------------------
+ftp : 68
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 55  Bytes(size of Packet)
+   |  Identification    : 8295
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49170
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 55 53 45 52 20 6A 6A 61 6E 67 6D 61 6E 0D 0A 6BUSER jjangmank
+ 20 79 6F 0D 0A EA F0 21 2E 89 70 58 B0 1A 08 1F yo!.pX
+ 72 50 96 39 05 B6 9D D8 55 8E 72rP9Ur
+---------------------
+ftp : 69
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41758
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15738
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 6A 61 6E 67 6D 61 6E 0D 0A 6Bjangmank
+ 20 79 6F 0D 0A EA F0 21 2E 89 70 58 B0 1A 08 1F yo!.pX
+ 72 50rP
+---------------------
+ftp : 70
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 74  Bytes(size of Packet)
+   |  Identification    : 41759
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15703
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77 6F 72 64 2Efy the password.
+ 0D 0A 96 39 05 B6 9D D8 55 8E 72 13 DD 23 6E 689Ur#nh
+ 65 6F 73 03 63 6F 6D C0 2B 05 01eoscom+
+---------------------
+ftp : 71
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8296
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49184
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 33 33 31 20 50 6C 65 61 73 65 20 73 70 65 63 69331 Please speci
+ 66 79 20 74 68 65 20 70 61 73 73 77fy the passw
+---------------------
+ftp : 72
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 58  Bytes(size of Packet)
+   |  Identification    : 8297
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49165
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 50 41 53 53 20 77 6B 64 67 75 73 61 75 64 31 21PASS wkdgusaud1!
+ 0D 0A 20 74 68 65 20 70 61 73 73 77 6F 72 64 2E the password.
+ 0D 0A 96 39 05 B6 9D D8 55 8E 72 13 DD 239Ur#
+---------------------
+ftp : 73
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41760
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15736
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 6B 64 67 75 73 61 75 64 31 21kdgusaud1!
+ 0D 0A 20 74 68 65 20 70 61 73 73 77 6F 72 64 2E the password.
+ 0D 0A
+---------------------
+ftp : 74
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 63  Bytes(size of Packet)
+   |  Identification    : 41761
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15712
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 32 33 30 20 4C 6F 67 69 6E 20 73 75 63 63 65 73230 Login succes
+ 73 66 75 6C 2E 0D 0A 70 61 73 73 77 6F 72 64 2Esful.password.
+ 0D 0A 96 39 05 B6 9D D8 55 8E 72 13 DD 23 6E 689Ur#nh
+ 65 6F 73eos
+---------------------
+ftp : 75
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8298
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49182
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 32 33 30 20 4C 6F 67 69 6E 20 73 75 63 63 65 73230 Login succes
+ 73 66 75 6C 2E 0D 0A 70 61 73 73 77sful.passw
+---------------------
+ftp : 76
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 46  Bytes(size of Packet)
+   |  Identification    : 8299
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49175
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 53 59 53 54 0D 0A 67 69 6E 20 73 75 63 63 65 73SYSTgin succes
+ 73 66 75 6C 2E 0D 0A 70 61 73 73 77 6F 72 64 2Esful.password.
+ 0D 0A
+---------------------
+ftp : 77
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41762
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15734
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 67 69 6E 20 73 75 63 63 65 73gin succes
+ 73 66 75 6C 2E 0D 0A 70 61 73 73 77 6F 72 64 2Esful.password.
+ 0D 0A
+---------------------
+ftp : 78
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 59  Bytes(size of Packet)
+   |  Identification    : 41763
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15714
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 32 31 35 20 55 4E 49 58 20 54 79 70 65 3A 20 4C215 UNIX Type: L
+ 38 0D 0A 6C 2E 0D 0A 70 61 73 73 77 6F 72 64 2E8l.password.
+ 0D 0A 96 39 05 B6 9D D8 55 8E 72 13 DD 23 6E9Ur#n
+---------------------
+ftp : 79
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8300
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49180
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 32 31 35 20 55 4E 49 58 20 54 79 70 65 3A 20 4C215 UNIX Type: L
+ 38 0D 0A 6C 2E 0D 0A 70 61 73 73 778l.passw
+---------------------
+ftp : 80
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 70  Bytes(size of Packet)
+   |  Identification    : 8301
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49149
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 50 4F 52 54 20 31 39 32 2C 31 36 38 2C 31 31 36PORT 192,168,116
+ 2C 31 33 31 2C 32 31 39 2C 31 34 35 0D 0A 64 2E,131,219,145d.
+ 0D 0A 96 39 05 B6 9D D8 55 8E 72 13 DD 23 6E 689Ur#nh
+ 65 6F 73 03 63 6F 6D C0 2Beoscom+
+---------------------
+ftp : 81
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 41764
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15732
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 39 32 2C 31 36 38 2C 31 31 3692,168,116
+ 2C 31 33 31 2C 32 31 39 2C 31 34 35 0D 0A 64 2E,131,219,145d.
+ 0D 0A
+---------------------
+ftp : 82
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 0
+   |  IP Total Length   : 91  Bytes(size of Packet)
+   |  Identification    : 41765
+   |  TTL      : 128
+   |  Protocol : 6
+   |  Checksum : 15680
+   |  Source IP        : 192.168.100.99
+   |  Destination IP   : 192.168.116.131
+
+   |  Source Port      : 21
+   |  Destination Port : 57120
+FTP Data Payload
+ 32 30 30 20 50 4F 52 54 20 63 6F 6D 6D 61 6E 64200 PORT command
+ 20 73 75 63 63 65 73 73 66 75 6C 2E 20 43 6F 6E successful. Con
+ 73 69 64 65 72 20 75 73 69 6E 67 20 50 41 53 56sider using PASV
+ 2E 0D 0A 03 63 6F 6D C0 2B 05 01.com+
+ 05 1B 01 73 07 70 73 74 61 74 69 63 03spstatic
+---------------------
+ftp : 83
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 40  Bytes(size of Packet)
+   |  Identification    : 8302
+   |  TTL      : 64
+   |  Protocol : 6
+   |  Checksum : 49178
+   |  Source IP        : 192.168.116.131
+   |  Destination IP   : 192.168.100.99
+
+   |  Source Port      : 57120
+   |  Destination Port : 21
+FTP Data Payload
+ 32 30 30 20 50 4F 52 54 20 63 6F 6D 6D 61 6E 64200 PORT command
+ 20 73 75 63 63 65 73 73 66 75 6C 2E successful.
+---------------------
+ftp : 84
+
+IP Header
+   |  IP Version        : 4
+   |  IP Header Length  : 5 DWORDS or 20 Bytes
+   |  Type Of Service   : 16
+   |  IP Total Length   : 46  Byte
