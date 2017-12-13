@@ -186,7 +186,7 @@ void PrintIpHeader(unsigned char* buffer, int size, FILE *logfile){
 
     unsigned short iphdrlen;
          
-    struct iphdr *iph = (struct iphdr *)buffer;
+    struct iphdr *iph = (struct iphdr *)(buffer+14);
     iphdrlen =iph->ihl*4;
      
     memset(&source, 0, sizeof(source));
