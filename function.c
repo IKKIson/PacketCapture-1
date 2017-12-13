@@ -86,7 +86,7 @@ int PrintCaptureForm(int flag){
 						++tcp;
 						if(flag == FORM_FTP){
 			///////////////////dev : Jang /////////////////////
-//							if(ntohs(tcph->dest) == 20 || ntohs(tcph->source) == 20 || ntohs(tcph->dest) == 21 || ntohs(tcph->source) == 21){	
+							if(ntohs(tcph->dest) == 20 || ntohs(tcph->source) == 20 || ntohs(tcph->dest) == 21 || ntohs(tcph->source) == 21){	
 							++ftp;
 							PrintIpHeader(buffer,data_size,logFtp);
 							printf("\n");
@@ -96,7 +96,7 @@ int PrintCaptureForm(int flag){
 			///////////////////end : Jang ////////////////////
 							printf("ftp : %d\n",ftp);
 							fprintf(logFtp,"ftp : %d\n",ftp);
-//							}
+							}
 						} else if(flag == FORM_HTTP){
                         ///////////////////dev : Son /////////////////////
 							 if(ntohs(tcph->dest) == 80 || ntohs(tcph->source) == 80){
@@ -186,7 +186,7 @@ void PrintIpHeader(unsigned char* buffer, int size, FILE *logfile){
 
     unsigned short iphdrlen;
          
-    struct iphdr *iph = (struct iphdr *)buffer;
+    struct iphdr *iph = (struct iphdr *)(buffer+14);
     iphdrlen =iph->ihl*4;
      
     memset(&source, 0, sizeof(source));
